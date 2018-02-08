@@ -1,0 +1,67 @@
+TO DO'S:
+
+Create book:
+    - book model
+    - ejs for the form
+    - book routes js
+    - routes for creation (get, post)
+
+List books:
+    - ejs 
+    - routes (get)
+
+Book detail:
+    - ejs
+    - route (get)
+
+User:
+    - model
+    - ejs ( //details)
+    - routes (get //detail)
+
+Log in:
+    - ejs   
+    - route (get/post)
+    - FB
+
+Sign up:
+    - ejs
+    - route (get/post)
+
+Log out:
+    - route (post)
+
+*HEADER:
+As a user I want to:
+    - see the sign in/up button so I can access to the featured content
+
+*LOG IN: 
+As a user I want to:
+    - log in the website with my user name and password
+
+*SIGN UP:
+As a user I want to:
+    - create my own user
+
+*MAIN PAGE:
+As a user I want to:
+    - see the books featured so I can check the details
+    - see the link for all the books so I can see all of them
+
+*LIST BOOKS:
+As a user I want to:
+    - see all the books available so I can access their details
+
+*BOOK DETAIL: 
+As a user I want to:
+    - see the details of the book 
+    - if I have added the book, edit it 
+
+*USER DETAIL: 
+As a user I want to:
+    - see the public profile of all users
+    - when in my own profile, edit my information 
+
+*CREATE BOOK:
+As a user I want to:
+    - add a new book to the books collection
