@@ -1,6 +1,6 @@
 // routes/auth-routes.js
 const express = require('express');
-const authRoutes = express.Router();
+const router = express.Router();
 const passport = require('passport');
 const ensureLogin = require('connect-ensure-login');
 
@@ -11,22 +11,22 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
-authRoutes.get('/login', (req, res, next) => {
+router.get('/login', (req, res, next) => {
   res.render('auth/login', { 'message': req.flash('error') });
 });
 
-authRoutes.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   successRedirect: '/books',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true
 }));
 
-authRoutes.get('/signup', (req, res, next) => {
+router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
 
-authRoutes.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   if (req.session.currentUser) {
     return res.redirect('/');
   }
@@ -74,19 +74,19 @@ authRoutes.post('/signup', (req, res, next) => {
   });
 });
 
-authRoutes.get('/', ensureLogin.ensureLoggedIn(), (req, res) => {
+router.get('/', ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render('books/books-list', { user: req.user });
 });
 
-authRoutes.get('/authRoutes/facebook', passport.authenticate('facebook'));
-authRoutes.get('/authRoutes/facebook/callback', passport.authenticate('facebook', {
+router.get('/authRoutes/facebook', passport.authenticate('facebook'));
+router.get('/authRoutes/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/books',
   failureRedirect: '/'
 }));
 
-authRoutes.post('/logout', (req, res) => {
-  req.logout();
+router.post('/logout', (req, res) => {
+  req.session.currentUser = null;
   res.redirect('/login');
 });
 
-module.exports = authRoutes;
+module.exports = router;

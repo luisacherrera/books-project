@@ -12,7 +12,9 @@
     <a href='/login'>Log In</a>
     <p>Don't have an account? <a href='/signup'>Sign up here</a></p>
     <a href="/authRoutes/facebook">Login With Facebook</a>
-    <a href="/logout">Logout</a>
+    <form action='/logout' method='post'>
+      <button type='submit'>Log out</button>
+    </form>
   </header> 
   <%- body %>  
   <footer>

@@ -4,8 +4,14 @@ User:
     - ejs ( /details)
     - routes (get /:id)
 
-Footer:
-    - Get back to main page
+
+
+Auth:
+
+    - Block paths when logged in to:
+        - log in
+        - sign up
+    - Log in with facebook: give authorization to other users
 
 DONE
 
@@ -39,6 +45,9 @@ Log out:
 
 Log in:
     - FB
+
+Footer:
+    - Get back to main page
 
 //////////////////////////////////////////////////////
 

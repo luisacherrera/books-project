@@ -52,8 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/user', user);
 app.use('/books', books);
-app.use('/', passportRouter);
 app.use('/', authRoutes);
+app.use('/', passportRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
