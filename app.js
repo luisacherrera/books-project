@@ -5,10 +5,16 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 
+const configurePassport = require('./misc/passport');
+const authRoutes = require('./routes/authRoutes');
 const index = require('./routes/index');
-const users = require('./routes/users');
+const user = require('./routes/user');
 const books = require('./routes/books');
+const passportRouter = require('./routes/passportRouter');
 
 const app = express();
 
@@ -19,7 +25,19 @@ mongoose.connect('mongodb://localhost/project-bookstore', {
   reconnectTries: Number.MAX_VALUE
 });
 
+app.use(session({
+  secret: 'our-passport-local-strategy-app',
+  resave: true,
+  saveUninitialized: true
+}));
+
+configurePassport();
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 // view engine setup
+
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -32,8 +50,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/books', books);
+app.use('/', passportRouter);
+app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
