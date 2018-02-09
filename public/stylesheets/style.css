@@ -1,6 +1,48 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: grey;
+  position: fixed;
+  width: 100%;
+}
+
+header a, p {
+  font-size: 12px;
+}
+
+header .container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+header #logs-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+header #logs-container div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#logout {
+  padding-top: 10px;
+}
+
+#main-container {
+  margin: 80px 50px;
+}
+
+footer {
+  display: flex;
 }
 
 a {

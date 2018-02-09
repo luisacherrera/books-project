@@ -8,18 +8,37 @@
   </head>
   <body>
   <header>
-    <h3>LOGO</h3>
-    <a href='/login'>Log In</a>
-    <p>Don't have an account? <a href='/signup'>Sign up here</a></p>
-    <a href="/authRoutes/facebook">Login With Facebook</a>
-    <form action='/logout' method='post'>
-      <button type='submit'>Log out</button>
-    </form>
-  </header> 
-  <%- body %>  
+    <div class='container' id='logo'>
+      <h2>LOGO</h2>
+    </div>
+    <div class='container' id='logs-container'>
+      <div id='login'>
+        <p><a href='/login'>Log In</a>
+        </br>
+        <a href="/authRoutes/facebook">Login With Facebook</a></p>
+      </div>
+      <div id='signup'>
+        <p>Don't have an account?
+        </br>
+        <a href='/signup'>Sign up here</a></p>
+      </div>
+      <div id='logout'>
+        <form action='/logout' method='post'>
+          <button type='submit'>Log out</button>
+        </form>
+      </div>
+    </div>
+  </header>
+  <div id='main-container'>
+    <%- body %>  
+  </div> 
   <footer>
-    <p>©Copyright: Ironhack 2018</p>
-    <a href='/'>Main site</a>
+    <div id='copyright'>
+      <p>©Copyright: Ironhack 2018</p>      
+    </div>
+    <div id='main-site'>
+      <a href='/'>Main site</a>
+    </div>
   </footer>
   </body>
 </html>
