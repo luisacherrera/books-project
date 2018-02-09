@@ -1,9 +1,5 @@
 TO DO'S:
 
-Book detail:
-    - ejs
-    - route (get)
-
 User:
     - ejs ( /details)
     - routes (get /:id)
@@ -22,6 +18,10 @@ Create book:
 List books:
     - ejs 
     - routes (get)
+
+Book detail:
+    - ejs
+    - route (get)
 
 User: 
     - model
