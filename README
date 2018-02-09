@@ -1,10 +1,7 @@
 TO DO'S:
 
-Create book:
-    - book model
-    - ejs for the form
-    - book routes js
-    - routes for creation (get, post)
+Log in:
+    - FB
 
 List books:
     - ejs 
@@ -19,10 +16,17 @@ User:
     - ejs ( //details)
     - routes (get //detail)
 
+DONE
+
+Create book:
+    - book model
+    - ejs for the form
+    - book routes js
+    - routes for creation (get, post)
+
 Log in:
     - ejs   
     - route (get/post)
-    - FB
 
 Sign up:
     - ejs
@@ -30,6 +34,8 @@ Sign up:
 
 Log out:
     - route (post)
+
+//////////////////////////////////////////////////////
 
 *HEADER:
 As a user I want to:

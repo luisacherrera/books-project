@@ -1,1 +1,7 @@
 <h1>A list of books</h1>
+<% booksData.forEach(function (book){%>
+    <p><%= book.title %></p>
+    <p><%= book.author %></p>
+    <p><%= book.description %></p>
+    <%})%>
+<a href='/books/create'>Add a new book</a>

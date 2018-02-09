@@ -3,7 +3,14 @@ const router = express.Router();
 const Book = require('../models/books.js');
 
 router.get('/', (req, res, next) => {
-  res.render('books/books-list');
+  const promise = Book.find();
+
+  promise.then(booksData => {
+    res.render('books/books-list', {booksData});
+  });
+  promise.catch(err => {
+    return next(err);
+  });
 });
 
 router.get('/create', (req, res, next) => {
