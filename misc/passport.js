@@ -18,8 +18,8 @@ function config () {
 
   passport.use(new FbStrategy({
     clientID: '188206165264319',
-    clientSecret: '561b033ea8be66be3323354527234ef5',
-    callbackURL: '/auth/facebook/callback'
+    clientSecret: '7b2cac88a042cfe6e5d3d48a833f01ed',
+    callbackURL: '/authRoutes/facebook/callback'
   }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ facebookID: profile.id }, (err, user) => {
       if (err) {

@@ -84,7 +84,7 @@ authRoutes.get('/authRoutes/facebook/callback', passport.authenticate('facebook'
   failureRedirect: '/'
 }));
 
-authRoutes.get('/logout', (req, res) => {
+authRoutes.post('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
