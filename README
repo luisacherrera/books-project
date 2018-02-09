@@ -1,18 +1,15 @@
 TO DO'S:
 
-Log in:
-    - FB
-
-
-
 Book detail:
     - ejs
     - route (get)
 
 User:
-    - model
-    - ejs ( //details)
-    - routes (get //detail)
+    - ejs ( /details)
+    - routes (get /:id)
+
+Footer:
+    - Get back to main page
 
 DONE
 
@@ -25,7 +22,10 @@ Create book:
 List books:
     - ejs 
     - routes (get)
-    
+
+User: 
+    - model
+
 Log in:
     - ejs   
     - route (get/post)
@@ -37,7 +37,39 @@ Sign up:
 Log out:
     - route (post)
 
+Log in:
+    - FB
+
 //////////////////////////////////////////////////////
+
+ROUTES
+
+MAIN (/):
+
+- GET /
+
+BOOKS (/books):
+
+- GET /
+- GET /:id
+- GET /create
+- POST /create
+
+USER (/user):
+
+- GET /:id
+
+AUTH (/auth):
+
+- GET /signup
+- POST /signup
+- GET /login
+- POST /login
+- POST /logout
+
+//////////////////////////////////////////////////////
+
+USER STORIES
 
 *HEADER:
 As a user I want to:

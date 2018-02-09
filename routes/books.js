@@ -13,6 +13,10 @@ router.get('/', (req, res, next) => {
   });
 });
 
+router.get('/:id', (req, res, next) => {
+
+});
+
 router.get('/create', (req, res, next) => {
   res.render('books/create-book');
 });
