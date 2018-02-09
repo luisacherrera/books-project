@@ -3,9 +3,7 @@ TO DO'S:
 Log in:
     - FB
 
-List books:
-    - ejs 
-    - routes (get)
+
 
 Book detail:
     - ejs
@@ -24,6 +22,10 @@ Create book:
     - book routes js
     - routes for creation (get, post)
 
+List books:
+    - ejs 
+    - routes (get)
+    
 Log in:
     - ejs   
     - route (get/post)
