@@ -9,13 +9,13 @@
   <body>
   <header>
     <div class='container' id='logo'>
-      <h2>LOGO</h2>
+      <a id='site-name' href='/'>LOGO</a>
     </div>
     <div class='container' id='logs-container'>
       <div id='login'>
         <p><a href='/auth/login'>Log In</a>
         </br>
-        <a href="/authRoutes/facebook">Login With Facebook</a></p>
+        <a href="/auth/authRoutes/facebook">Login with Facebook</a></p>
       </div>
       <div id='signup'>
         <p>Don't have an account?
@@ -24,7 +24,7 @@
       </div>
       <div id='logout'>
         <form action='/auth/logout' method='post'>
-          <button type='submit'>Log out</button>
+          <button type='submit' id='button-logout'>Log out</button>
         </form>
       </div>
     </div>
