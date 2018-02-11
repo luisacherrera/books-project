@@ -69,7 +69,7 @@ router.post('/signup', (req, res, next) => {
         return next(err);
       }
       req.session.currentUser = newUser;
-      res.redirect('/login');
+      res.redirect('/auth/login');
     });
   });
 });
@@ -86,7 +86,7 @@ router.get('/authRoutes/facebook/callback', passport.authenticate('facebook', {
 
 router.post('/logout', (req, res) => {
   req.session.currentUser = null;
-  res.redirect('/login');
+  res.redirect('/auth/login');
 });
 
 module.exports = router;

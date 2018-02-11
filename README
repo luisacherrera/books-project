@@ -4,7 +4,11 @@ User:
     - ejs ( /details)
     - routes (get /:id)
 
+Books:
+    - Allow only logged users to add books
 
+Header:
+    - Show/hide log in-sign up/log out according to user log status
 
 Auth:
 
