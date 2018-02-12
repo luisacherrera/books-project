@@ -5,6 +5,8 @@ User:
     - routes (get /:id)
 
 Books:
+    - edit existing books
+    - delete books
     - Allow only logged users to add books
 
 Header:
