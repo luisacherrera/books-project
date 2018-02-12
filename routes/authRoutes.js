@@ -17,8 +17,7 @@ router.get('/login', (req, res, next) => {
   if (req.user) {
     return res.redirect('/');
   }
-
-  res.render('auth/login', { 'message': req.flash('error') });
+  res.render('auth/login', {'message': req.flash('error')});
 });
 
 router.post('/login', passport.authenticate('local', {

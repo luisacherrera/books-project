@@ -12,6 +12,7 @@
       <a id='site-name' href='/'>LOGO</a>
     </div>
     <div class='container' id='logs-container'>
+      <% if (!user) {%> 
       <div id='login'>
         <p><a href='/auth/login'>Log In</a>
         </br>
@@ -22,11 +23,13 @@
         </br>
         <a href='/auth/signup'>Sign up here</a></p>
       </div>
+      <% } else { %> 
       <div id='logout'>
         <form action='/auth/logout' method='post'>
           <button type='submit' id='button-logout'>Log out</button>
         </form>
       </div>
+      <% } %>
     </div>
   </header>
   <div id='main-container'>
