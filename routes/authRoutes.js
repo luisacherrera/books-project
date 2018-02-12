@@ -42,6 +42,7 @@ router.post('/signup', (req, res, next) => {
 
   const username = req.body.username;
   const password = req.body.password;
+  const role = req.body.type;
 
   // validate
   if (username === '' || password === '') {
@@ -69,8 +70,8 @@ router.post('/signup', (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
-
+      password: hashPass,
+      role
     });
 
     newUser.save((err) => {

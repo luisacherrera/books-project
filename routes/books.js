@@ -4,6 +4,16 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models/books.js');
 
+function checkRoles (role) {
+  return function (req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/auth/login');
+    }
+  };
+}
+
 router.get('/', (req, res, next) => {
   Book.find()
     .then(booksData => {
@@ -14,11 +24,11 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.get('/create', (req, res, next) => {
+router.get('/create', checkRoles('PUBLISHER'), (req, res, next) => {
   if (!req.user) {
     res.redirect('/auth/login');
   }
-  res.render('books/create-book');
+  res.render('books/create-book', {user: req.user});
 });
 
 router.get('/:id/edit', (req, res, next) => {
