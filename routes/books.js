@@ -42,21 +42,38 @@ router.get('/:id/edit', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const bookId = req.params.id;
-  Book.findById(bookId)
-    .then((result) => {
-      let data = {
-        id: result.id,
-        title: result.title,
-        author: result.author,
-        description: result.description,
-        owner: result.owner,
-        user: req.user.id
-      };
-      res.render('books/book-detail', data);
-    })
-    .catch(err => {
-      return next(err);
-    });
+  if (req.user) {
+    Book.findById(bookId)
+      .then((result) => {
+        let data = {
+          id: result.id,
+          title: result.title,
+          author: result.author,
+          description: result.description,
+          owner: result.owner,
+          user: req.user.id
+        };
+        res.render('books/book-detail', data);
+      })
+      .catch(err => {
+        return next(err);
+      });
+  } else {
+    Book.findById(bookId)
+      .then((result) => {
+        let data = {
+          id: result.id,
+          title: result.title,
+          author: result.author,
+          description: result.description,
+          owner: result.owner
+        };
+        res.render('books/book-detail', data);
+      })
+      .catch(err => {
+        return next(err);
+      });
+  }
 });
 
 router.post('/create', (req, res, next) => {

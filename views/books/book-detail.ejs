@@ -7,7 +7,7 @@
 <div class="field">
     <p class="description"> Description: <%= description %></p>
 </div>
-<% if (user === owner) { %>
+<% if (user && user === owner) { %>
 <a href='/books/<%= id %>/edit'>Edit</a>
 <%}%>
 </br>
