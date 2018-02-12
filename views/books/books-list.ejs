@@ -4,5 +4,6 @@
   <h2><a href='/books/<%= book._id %>'><%= book.title %></a></h2>
   <h4><%= book.author %></h4>
 <%})%>
-
+<% if (user && user.role === 'PUBLISHER') { %>
 <a href='/books/create'>Add a new book</a>
+<%}%>
