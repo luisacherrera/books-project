@@ -11,7 +11,9 @@ const userSchema = new Schema({
     enum: ['USER', 'PUBLISHER'],
     default: 'USER'
   },
-  facebookID: String
+  facebookId: String,
+  facebookName: String
+
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });

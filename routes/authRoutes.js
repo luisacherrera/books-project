@@ -90,7 +90,7 @@ router.get('/', ensureLogin.ensureLoggedIn(), (req, res) => {
 router.get('/facebook', passport.authenticate('facebook'));
 router.get('/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/books',
-  failureRedirect: '/'
+  failureRedirect: '/auth/login'
 }));
 
 router.post('/logout', (req, res) => {
