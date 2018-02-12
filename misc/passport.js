@@ -1,3 +1,5 @@
+'use strict';
+
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 const passport = require('passport');
@@ -19,7 +21,7 @@ function config () {
   passport.use(new FbStrategy({
     clientID: '188206165264319',
     clientSecret: '7b2cac88a042cfe6e5d3d48a833f01ed',
-    callbackURL: '/authRoutes/facebook/callback'
+    callbackURL: '/facebook/callback'
   }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ facebookID: profile.id }, (err, user) => {
       if (err) {

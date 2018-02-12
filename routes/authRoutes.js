@@ -1,3 +1,5 @@
+'use strict';
+
 // routes/auth-routes.js
 const express = require('express');
 const router = express.Router();
@@ -12,6 +14,10 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 router.get('/login', (req, res, next) => {
+  if (req.session.currentUser) {
+    return res.redirect('/');
+  }
+
   res.render('auth/login', { 'message': req.flash('error') });
 });
 
@@ -78,8 +84,8 @@ router.get('/', ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render('books/books-list', { user: req.user });
 });
 
-router.get('/authRoutes/facebook', passport.authenticate('facebook'));
-router.get('/authRoutes/facebook/callback', passport.authenticate('facebook', {
+router.get('/facebook', passport.authenticate('facebook'));
+router.get('/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/books',
   failureRedirect: '/'
 }));

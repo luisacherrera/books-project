@@ -1,6 +1,8 @@
 <h1>A list of books</h1>
+
 <% booksData.forEach(function (book){%>
-    <h2><a href='/books/<%= book._id %>'><%= book.title %></a></h2>
-    <h4><%= book.author %></h4>
-    <%})%>
+  <h2><a href='/books/<%= book._id %>'><%= book.title %></a></h2>
+  <h4><%= book.author %></h4>
+<%})%>
+
 <a href='/books/create'>Add a new book</a>

@@ -4,8 +4,7 @@ User:
     - ejs ( /details)
     - routes (get /:id)
 
-Books:
-    - edit existing books
+Book detail:
     - delete books
     - Allow only logged users to add books
 
@@ -34,6 +33,7 @@ List books:
 Book detail:
     - ejs
     - route (get)
+    - edit existing books
 
 User: 
     - model
