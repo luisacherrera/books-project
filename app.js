@@ -13,10 +13,11 @@ const flash = require('connect-flash');
 
 const configurePassport = require('./misc/passport');
 const authRoutes = require('./routes/authRoutes');
+const passportRouter = require('./routes/passportRouter');
+
 const index = require('./routes/index');
 const user = require('./routes/user');
 const books = require('./routes/books');
-const passportRouter = require('./routes/passportRouter');
 
 const app = express();
 
@@ -34,11 +35,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layout');
 
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(logger('dev'));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(session({
   secret: 'our-passport-local-strategy-app',
@@ -50,11 +51,6 @@ configurePassport();
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(function (req, res, next) {
-  app.locals.user = req.session.currentUser;
-  next();
-});
 
 app.use('/', index);
 app.use('/user', user);

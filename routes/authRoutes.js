@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 router.get('/login', (req, res, next) => {
-  if (req.session.currentUser) {
+  if (req.user) {
     return res.redirect('/');
   }
 
@@ -29,11 +29,15 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 router.get('/signup', (req, res, next) => {
+  if (req.user) {
+    return res.redirect('/');
+  }
+
   res.render('auth/signup');
 });
 
 router.post('/signup', (req, res, next) => {
-  if (req.session.currentUser) {
+  if (req.user) {
     return res.redirect('/');
   }
 
@@ -74,7 +78,6 @@ router.post('/signup', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      req.session.currentUser = newUser;
       res.redirect('/auth/login');
     });
   });
@@ -91,7 +94,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 }));
 
 router.post('/logout', (req, res) => {
-  req.session.currentUser = null;
+  req.logout();
   res.redirect('/auth/login');
 });
 
