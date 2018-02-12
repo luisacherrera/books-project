@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 const BookSchema = new Schema({
   title: String,
   author: String,
-  description: String
+  description: String,
+  owner: String
 });
 
 const Book = mongoose.model('Book', BookSchema);

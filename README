@@ -8,14 +8,8 @@ Book detail:
     - delete books
     - Allow only logged users to add books
 
-Header:
-    - Show/hide log in-sign up/log out according to user log status
-
 Auth:
-
-    - Block paths when logged in to:
-        - log in
-        - sign up
+    - Rules for types of password
     - Log in with facebook: give authorization to other users
 
 DONE
@@ -51,6 +45,14 @@ Log out:
 
 Log in:
     - FB
+
+Auth:
+   - Block paths when logged in to:
+        - log in
+        - sign up
+
+Header:
+    - Show/hide log in-sign up/log out according to user log status
 
 Footer:
     - Get back to main page
