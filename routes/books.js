@@ -35,22 +35,22 @@ router.get('/:id/edit', (req, res, next) => {
     });
 });
 
-// router.post('/:id', (req, res, next) => {
-//   const bookId = req.params.id;
+router.post('/:id', (req, res, next) => {
+  const bookId = req.params.id;
 
-//   const updateInfo = {
-//     title: req.body.title,
-//     author: req.body.author,
-//     description: req.body.description
-//   };
+  const updateInfo = {
+    title: req.body.title,
+    author: req.body.author,
+    description: req.body.description
+  };
 
-//   Celebrity.findByIdAndUpdate(celebId, updateInfo, (err, celebrity) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     return res.redirect('/celebrities');
-//   });
-// });
+  Book.findByIdAndUpdate(bookId, updateInfo)
+    .then((book) => {
+      return res.redirect('/books');
+    }).catch(err => {
+      return next(err);
+    });
+});
 
 router.get('/:id', (req, res, next) => {
   const bookId = req.params.id;
