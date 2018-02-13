@@ -80,7 +80,9 @@ router.post('/signup', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect('/auth/login');
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/books');
+      });
     });
   });
 });

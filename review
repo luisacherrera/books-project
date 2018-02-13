@@ -11,17 +11,14 @@ model
   update routes.
 
 
-if(user.id !== req.params.id){
-  dsnukzgf
-}
-
-
-login after signup
-
-block posts depending on sesion & then role role
 
 
 
+
+block posts depending on sesion & then role
+
+
+<br>
 
 
 

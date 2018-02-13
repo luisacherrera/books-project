@@ -86,7 +86,7 @@ router.get('/:id', (req, res, next) => {
   }
 });
 
-router.post('/create', (req, res, next) => {
+router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
   const infoBook = {
     title: req.body.title,
     author: req.body.author,
@@ -107,7 +107,10 @@ router.post('/create', (req, res, next) => {
 
 router.post('/:id', (req, res, next) => {
   const bookId = req.params.id;
-
+  const ownerId = req._passport.session.user;
+  if (!req.user || req.user.id !== ownerId) {
+    res.redirect('/books');
+  }
   const updateInfo = {
     title: req.body.title,
     author: req.body.author,

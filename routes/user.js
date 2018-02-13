@@ -6,6 +6,9 @@ const User = require('../models/user.js');
 
 router.get('/:id', (req, res, next) => {
   const userId = req.params.id;
+  if (req.user.id !== userId) {
+    res.redirect('/');
+  }
   User.findById(userId)
     .then((result) => {
       let data = {
