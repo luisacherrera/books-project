@@ -73,14 +73,18 @@ header a, footer a {
 footer {
   display: flex;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
   background-color: grey;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 #main-site {
-  padding-top: 10px;
-  font-size: 13px;
+  padding-right: 20px;
+}
+
+#copyright {
+  padding-left: 20px;
 }
 
 /* INDEX PAGE */
