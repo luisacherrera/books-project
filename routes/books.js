@@ -32,9 +32,9 @@ router.get('/create', checkRoles('PUBLISHER'), (req, res, next) => {
 });
 
 router.get('/:id/edit', (req, res, next) => {
-  // if (!req.session.currentUser) {
-  //   return res.redirect('/auth/login');
-  // }
+  if (!req.user) {
+    return res.redirect('/auth/login');
+  }
   const bookId = req.params.id;
   Book.findById(bookId)
     .then((result) => {

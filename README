@@ -10,7 +10,6 @@ Book detail:
 
 Auth:
     - Rules for types of password
-    - Log in with facebook: give authorization to other users
 
 DONE
 
@@ -35,6 +34,8 @@ User:
 Log in:
     - ejs   
     - route (get/post)
+    - FB
+
 
 Sign up:
     - ejs
@@ -43,13 +44,11 @@ Sign up:
 Log out:
     - route (post)
 
-Log in:
-    - FB
-
 Auth:
    - Block paths when logged in to:
         - log in
         - sign up
+    - Log in with facebook: give authorization to other users
 
 Header:
     - Show/hide log in-sign up/log out according to user log status
@@ -90,11 +89,13 @@ USER STORIES
 
 *HEADER:
 As a user I want to:
-    - see the sign in/up button so I can access to the featured content
+    - see the sign in/up button so I can access the featured content
+    - logout when logged in
 
 *LOG IN: 
 As a user I want to:
     - log in the website with my user name and password
+    - log in with facebook
 
 *SIGN UP:
 As a user I want to:
@@ -102,23 +103,29 @@ As a user I want to:
 
 *MAIN PAGE:
 As a user I want to:
-    - see the books featured so I can check the details
     - see the link for all the books so I can see all of them
+    - see the books featured so I can check the details
+
 
 *LIST BOOKS:
 As a user I want to:
     - see all the books available so I can access their details
+    - if my type of user is PUBLISHER, see the add new book button
 
 *BOOK DETAIL: 
 As a user I want to:
     - see the details of the book 
     - if I have added the book, edit it 
+    - write a review on that book
+    - save it on my favs
+
+*CREATE BOOK:
+As a user I want to:
+    - add a new book to the books collection
 
 *USER DETAIL: 
 As a user I want to:
     - see the public profile of all users
     - when in my own profile, edit my information 
 
-*CREATE BOOK:
-As a user I want to:
-    - add a new book to the books collection
+

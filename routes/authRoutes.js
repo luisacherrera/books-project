@@ -45,10 +45,10 @@ router.post('/signup', (req, res, next) => {
   const role = req.body.type;
 
   // validate
-  if (username === '' || password === '') {
+  if (username === '' || password === '' || password.length < 6 || !password.match(/[A-Z]/)) {
     const data = {
       title: 'Signup',
-      message: 'Try again'
+      message: 'Password must by six characters with an uppercase and a number'
     };
     return res.render('auth/signup', data);
   }

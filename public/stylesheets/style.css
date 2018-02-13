@@ -28,6 +28,7 @@ header {
   background-color: grey;
   position: fixed;
   width: 100%;
+  height: 70px;
 }
 
 #site-name {
@@ -60,10 +61,6 @@ header #logs-container {
 header #logs-container div {
   padding-left: 10px;
   padding-right: 10px;
-}
-
-#logout {
-  padding-top: 10px;
 }
 
 #main-container {
