@@ -1,5 +1,11 @@
 <div class='main-container'>
   <h2>What to read next?</h2>
+  <div class="topnav">
+        <form action='/search' method="POST">
+            <input type="text" name = 'title' placeholder="Search for your favorite book..">
+            <input type='submit' value='Search'>
+        </form>
+    </div>
 
   <% booksData.forEach(function (book){%>
     <div class='container'>
@@ -7,7 +13,9 @@
       <h5><%= book.author %></h5>
     </div>
   <%})%>
-
+  <% if (typeof message != 'undefined') { %>
+    <div class='error-message'><%= message %></div>
+  <% } %>
   <% if (user && user.role === 'PUBLISHER') { %>
     <p><a href='/books/create'>Add a new book</a></p>
   <%}%>

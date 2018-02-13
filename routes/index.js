@@ -9,12 +9,14 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/search', (req, res, next) => {
-  Book.find({title: req.body.title})
+  var bodyTitle = req.body.title;
+  Book.find({title: { '$regex': bodyTitle, '$options': 'i' }})
     .then(booksData => {
-      res.render('books/books-list', {booksData});
-    })
-    .catch(err => {
-      return next(err);
+      if (booksData.length > 0) {
+        res.render('books/books-list', {booksData});
+      } else {
+        res.render('books/book-not-found');
+      }
     });
 });
 
