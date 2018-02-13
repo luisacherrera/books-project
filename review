@@ -1,0 +1,30 @@
+
+//@ book model (check file name)
+
+model
+
+  owner: {
+      type: ObjectId,
+      ref: 'User'
+    }
+
+  update routes.
+
+
+if(user.id !== req.params.id){
+  dsnukzgf
+}
+
+
+login after signup
+
+block posts depending on sesion & then role role
+
+
+
+
+
+
+
+***********
+switch to promise based.
