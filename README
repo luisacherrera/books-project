@@ -2,7 +2,7 @@ TO DO'S:
 
 User:
     - ejs ( /details)
-    - routes (get /:id)
+   
 
 Book detail:
     - delete books
@@ -27,9 +27,12 @@ Book detail:
     - ejs
     - route (get)
     - edit existing books
+    - block posts depending on sesion & then role
 
 User: 
     - model
+    - routes (get /:id)
+    
 
 Log in:
     - ejs   
@@ -40,6 +43,7 @@ Log in:
 Sign up:
     - ejs
     - route (get/post)
+    -login after signup
 
 Log out:
     - route (post)

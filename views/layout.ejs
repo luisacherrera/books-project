@@ -24,6 +24,9 @@
         <a href='/auth/signup'>Sign up here</a></p>
       </div>
       <% } else { %> 
+        <div id='userprofile'>
+          <a href='/user/<%= user.id %>'><%= user.name %></a>
+        </div>
       <div id='logout'>
         <form action='/auth/logout' method='post'>
           <button type='submit' id='button-logout'>Log out</button>

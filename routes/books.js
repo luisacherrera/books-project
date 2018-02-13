@@ -86,7 +86,7 @@ router.get('/:id', (req, res, next) => {
   }
 });
 
-router.post('/create', (req, res, next) => {
+router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
   const infoBook = {
     title: req.body.title,
     author: req.body.author,
