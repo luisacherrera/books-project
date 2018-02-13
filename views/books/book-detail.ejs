@@ -10,6 +10,9 @@
     </div>
     <% if (user && user === owner) { %>
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
+    <form action='/books/Delete/<%= id %>/' method="POST">
+        <input type='submit' value='Delete'>
+    </form>
     <%}%>
     <p><a href='/books'>Go to the complete list</a></p>
 </div>

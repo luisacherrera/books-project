@@ -17,7 +17,7 @@ const passportRouter = require('./routes/passportRouter');
 
 const index = require('./routes/index');
 const user = require('./routes/user');
-const books = require('./routes/books');
+const book = require('./routes/books');
 
 const app = express();
 
@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/user', user);
-app.use('/books', books);
+app.use('/books', book);
 app.use('/auth', authRoutes);
 app.use('/', passportRouter);
 

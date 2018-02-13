@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Book = require('../models/books.js');
+const Book = require('../models/book.js');
 
 function checkRoles (role) {
   return function (req, res, next) {
@@ -15,7 +15,7 @@ function checkRoles (role) {
 }
 
 router.get('/', (req, res, next) => {
-  Book.find()
+  Book.find({'archived': false})
     .then(booksData => {
       res.render('books/books-list', {booksData});
     })
@@ -61,7 +61,8 @@ router.get('/:id', (req, res, next) => {
           author: result.author,
           description: result.description,
           owner: result.owner,
-          user: req.user.id
+          user: req.user.id,
+          archived: false
         };
         res.render('books/book-detail', data);
       })
@@ -76,7 +77,8 @@ router.get('/:id', (req, res, next) => {
           title: result.title,
           author: result.author,
           description: result.description,
-          owner: result.owner
+          owner: result.owner,
+          archived: false
         };
         res.render('books/book-detail', data);
       })
@@ -91,7 +93,8 @@ router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
     title: req.body.title,
     author: req.body.author,
     description: req.body.description,
-    owner: req.user.id
+    owner: req.user.id,
+    archived: false
   };
 
   const newBook = new Book(infoBook);
@@ -101,6 +104,24 @@ router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
       res.redirect('/books');
     })
     .catch((err) => {
+      return next(err);
+    });
+});
+
+router.post('/delete/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  const ownerId = req._passport.session.user;
+  if (!req.user || req.user.id !== ownerId) {
+    res.redirect('/books');
+  }
+  const updateInfo = {
+    archived: true
+  };
+
+  Book.findByIdAndUpdate(bookId, updateInfo)
+    .then((book) => {
+      return res.redirect('/books');
+    }).catch(err => {
       return next(err);
     });
 });
