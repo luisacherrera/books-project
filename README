@@ -43,7 +43,7 @@ Log in:
 Sign up:
     - ejs
     - route (get/post)
-    -login after signup
+    - login after signup
 
 Log out:
     - route (post)
