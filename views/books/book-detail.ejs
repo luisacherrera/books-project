@@ -9,7 +9,7 @@
         <p class='description'> Description: <%= description %></p>
     </div>
     <% if (user && user === owner) { %>
-    <a href='/books/<%= id %>/edit'>Edit</a>
+    <p><a href='/books/<%= id %>/edit'>Edit</a></p>
     <%}%>
-    <a href='/books'>Go back to the complete list</a>
+    <p><a href='/books'>Go back to the complete list</a></p>
 </div>

@@ -5,21 +5,20 @@ body {
   margin: 0px;
 }
 
+.main-container {
+  margin: 80px 50px;
+}
+
 a:hover {
   text-decoration: underline;
 }
 
 a {
   text-decoration: none;
+  color: #00B7FF;
 }
 
-header, footer {
-  color: white;
-}
-
-header a, footer a {
-  color: white;
-}
+/* HEADER FOOTER */
 
 header {
   display: flex;
@@ -63,8 +62,12 @@ header #logs-container div {
   padding-right: 10px;
 }
 
-.main-container {
-  margin: 80px 50px;
+header, footer {
+  color: white;
+}
+
+header a, footer a {
+  color: white;
 }
 
 footer {
@@ -80,9 +83,7 @@ footer {
   font-size: 13px;
 }
 
-a {
-  color: #00B7FF;
-}
+/* INDEX PAGE */
 
 #index-div {
   background-image: url('../images/books.jpg');
@@ -100,5 +101,17 @@ a {
 
 #index-div a {
   color: white;
-  font-size: 18px;
+  font-size: 20px;
+}
+
+#index-div h2 {
+  font-size: 38px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.control {
+  margin-bottom: 20px;
 }
