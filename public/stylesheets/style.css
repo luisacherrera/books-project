@@ -18,6 +18,11 @@ a {
   color: #00B7FF;
 }
 
+button {
+  border-color: black;
+  background-color: transparent;
+}
+
 /* HEADER FOOTER */
 
 header {
@@ -118,4 +123,35 @@ footer {
 
 .control {
   margin-bottom: 20px;
+}
+
+/* INPUTS */
+
+input[type=text], input[type=password], textarea {
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+textarea {
+  width: 200px;
+  height: 150px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-bottom: 20px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+  .col-25, .col-75 {
+      width: 100%;
+      margin-top: 0;
+  }
 }
