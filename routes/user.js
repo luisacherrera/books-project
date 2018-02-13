@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 
+// render the user page
+
 router.get('/:id', (req, res, next) => {
   const userId = req.params.id;
   if (req.user.id !== userId) {

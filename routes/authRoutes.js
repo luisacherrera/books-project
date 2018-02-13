@@ -13,6 +13,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
+// render the login page
 router.get('/login', (req, res, next) => {
   if (req.user) {
     return res.redirect('/');
@@ -20,6 +21,7 @@ router.get('/login', (req, res, next) => {
   res.render('auth/login', {'message': req.flash('error')});
 });
 
+// handle the login post
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/books',
   failureRedirect: '/auth/login',
@@ -27,6 +29,7 @@ router.post('/login', passport.authenticate('local', {
   passReqToCallback: true
 }));
 
+// render the signup page
 router.get('/signup', (req, res, next) => {
   if (req.user) {
     return res.redirect('/');
@@ -35,6 +38,7 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
 
+// handle the signup post
 router.post('/signup', (req, res, next) => {
   if (req.user) {
     return res.redirect('/');
@@ -87,16 +91,19 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
+// ensure user is logged
 router.get('/', ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render('books/books-list', { user: req.user });
 });
 
+// facebook log in
 router.get('/facebook', passport.authenticate('facebook'));
 router.get('/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/books',
   failureRedirect: '/auth/login'
 }));
 
+// handle the logout post
 router.post('/logout', (req, res) => {
   req.logout();
   res.redirect('/auth/login');

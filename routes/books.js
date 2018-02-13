@@ -14,8 +14,10 @@ function checkRoles (role) {
   };
 }
 
+// render the list of books page
 router.get('/', (req, res, next) => {
-  Book.find({'archived': false})
+  // Book.find({'archived': false})
+  Book.find()
     .then(booksData => {
       res.render('books/books-list', {booksData});
     })
@@ -24,6 +26,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
+// render the add book page
 router.get('/create', checkRoles('PUBLISHER'), (req, res, next) => {
   if (!req.user) {
     res.redirect('/auth/login');
@@ -31,6 +34,28 @@ router.get('/create', checkRoles('PUBLISHER'), (req, res, next) => {
   res.render('books/create-book', {user: req.user});
 });
 
+// handle the post for create
+router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
+  const infoBook = {
+    title: req.body.title,
+    author: req.body.author,
+    description: req.body.description,
+    owner: req.user.id,
+    archived: false
+  };
+
+  const newBook = new Book(infoBook);
+
+  newBook.save()
+    .then((result) => {
+      res.redirect('/books');
+    })
+    .catch((err) => {
+      return next(err);
+    });
+});
+
+// render the edit book page
 router.get('/:id/edit', (req, res, next) => {
   if (!req.user) {
     return res.redirect('/auth/login');
@@ -50,6 +75,28 @@ router.get('/:id/edit', (req, res, next) => {
     });
 });
 
+// handle the post for edit
+router.post('/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  const ownerId = req._passport.session.user;
+  if (!req.user || req.user.id !== ownerId) {
+    res.redirect('/books');
+  }
+  const updateInfo = {
+    title: req.body.title,
+    author: req.body.author,
+    description: req.body.description
+  };
+
+  Book.findByIdAndUpdate(bookId, updateInfo)
+    .then((book) => {
+      return res.redirect('/books');
+    }).catch(err => {
+      return next(err);
+    });
+});
+
+// render the detail book page
 router.get('/:id', (req, res, next) => {
   const bookId = req.params.id;
   if (req.user) {
@@ -88,26 +135,7 @@ router.get('/:id', (req, res, next) => {
   }
 });
 
-router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
-  const infoBook = {
-    title: req.body.title,
-    author: req.body.author,
-    description: req.body.description,
-    owner: req.user.id,
-    archived: false
-  };
-
-  const newBook = new Book(infoBook);
-
-  newBook.save()
-    .then((result) => {
-      res.redirect('/books');
-    })
-    .catch((err) => {
-      return next(err);
-    });
-});
-
+// handle the post for delete
 router.post('/delete/:id', (req, res, next) => {
   const bookId = req.params.id;
   const ownerId = req._passport.session.user;
@@ -116,26 +144,6 @@ router.post('/delete/:id', (req, res, next) => {
   }
   const updateInfo = {
     archived: true
-  };
-
-  Book.findByIdAndUpdate(bookId, updateInfo)
-    .then((book) => {
-      return res.redirect('/books');
-    }).catch(err => {
-      return next(err);
-    });
-});
-
-router.post('/:id', (req, res, next) => {
-  const bookId = req.params.id;
-  const ownerId = req._passport.session.user;
-  if (!req.user || req.user.id !== ownerId) {
-    res.redirect('/books');
-  }
-  const updateInfo = {
-    title: req.body.title,
-    author: req.body.author,
-    description: req.body.description
   };
 
   Book.findByIdAndUpdate(bookId, updateInfo)
