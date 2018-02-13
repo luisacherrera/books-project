@@ -48,7 +48,7 @@ router.post('/signup', (req, res, next) => {
   if (username === '' || password === '' || password.length < 6 || !password.match(/[A-Z]/)) {
     const data = {
       title: 'Signup',
-      message: 'Password must by six characters with an uppercase and a number'
+      message: 'Password must be at least six characters with an uppercase and a number'
     };
     return res.render('auth/signup', data);
   }

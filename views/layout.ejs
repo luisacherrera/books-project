@@ -23,7 +23,10 @@
         </br>
         <a href='/auth/signup'>Sign up here</a></p>
       </div>
-      <% } else { %> 
+      <% } else { %>
+      <div id='userprofile'>
+        <a href='/user/<%= user.id %>'>My profile</a>
+      </div> 
       <div id='logout'>
         <form action='/auth/logout' method='post'>
           <button type='submit' id='button-logout'>Log out</button>

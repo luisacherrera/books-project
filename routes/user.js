@@ -6,7 +6,16 @@ const User = require('../models/user.js');
 
 router.get('/:id', (req, res, next) => {
   const userId = req.params.id;
-  res.render('./user/user-detail');
+  User.findById(userId)
+    .then((result) => {
+      let data = {
+        username: result.username
+      };
+      res.render('./user/user-detail', data);
+    })
+    .catch(err => {
+      return next(err);
+    });
 });
 
 module.exports = router;
