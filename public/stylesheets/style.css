@@ -23,6 +23,12 @@ button {
   background-color: transparent;
 }
 
+.error-message {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(194,27,59);
+}
+
 /* HEADER FOOTER */
 
 header {
