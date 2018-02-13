@@ -63,7 +63,7 @@ header #logs-container div {
   padding-right: 10px;
 }
 
-#main-container {
+.main-container {
   margin: 80px 50px;
 }
 
@@ -93,11 +93,12 @@ a {
   color: white;
 }
 
-#index-div h1 {
+#index-div {
   padding-top: 150px;
+  height: 450px;
 }
 
 #index-div a {
   color: white;
-  font-size: 20px;
+  font-size: 18px;
 }

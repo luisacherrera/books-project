@@ -1,12 +1,16 @@
-<h1>A list of books</h1>
+<div class='main-container'>
+  <h2>What to read next?</h2>
 
-<% booksData.forEach(function (book){%>
-  <h2><a href='/books/<%= book._id %>'><%= book.title %></a></h2>
-  <h4><%= book.author %></h4>
-<%})%>
-<% if (user && user.role === 'PUBLISHER') { %>
-<a href='/books/create'>Add a new book</a>
-<%}%>
+  <% booksData.forEach(function (book){%>
+    <div class='container'>
+      <h3><a href='/books/<%= book._id %>'><%= book.title %></a></h3>
+      <h5><%= book.author %></h5>
+    </div>
+  <%})%>
 
-</br>
-<div><a href='/'>Back</a></p></div>
+  <% if (user && user.role === 'PUBLISHER') { %>
+    <a href='/books/create'>Add a new book</a>
+  <%}%>
+
+  <a href='/'>Back</a>
+</div>

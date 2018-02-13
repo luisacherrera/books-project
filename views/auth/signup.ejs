@@ -1,31 +1,37 @@
-<h2>Sign Up</h2>
+<div class='main-container'>
+  <h2>Sign Up</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
-  <label for="name">Name</label>
-  <input id="name" type="text" name="name" placeholder="Your Name">
-  <br><br>
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="Your UserName">
-  <br><br>
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-</br>
-  <label for="type">Type: </label>
-  <input id="type-user" type="radio" name="type" value="USER">User
-  <input id="type-publisher" type="radio" name="type" value="PUBLISHER">Publisher
+  <form action='/auth/signup' method='POST' id='form-container'>
+    <div class='field'>
+      <label for='name'>Name</label>
+      <input id='name' type='text' name='name' placeholder='Your Name'>
+    </div>
+    <div class='field'>  
+      <label for='username'>Username</label>
+      <input id='username' type='text' name='username' placeholder='Your UserName'>
+    </div>
+    <div class='field'>
+      <label for='password'>Password</label>
+      <input id='password' type='password' name='password' placeholder='Your password'>
+    </div>
+    <div class='field'>
+      <label for='type'>Type: </label>
+      <input id='type-user' type='radio' name='type' value='USER'>User
+      <input id='type-publisher' type='radio' name='type' value='PUBLISHER'>Publisher
+    </div>
 
-  <% if (typeof message !== "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
-  <br><br>
+    <% if (typeof message !== 'undefined') { %>
+      <div class='error-message'><%= message %></div>
+    <% } %>
+    <div class='control'>
+      <button class='submit'>Create account</button>
+    </div>
 
-  <button>Create account</button>
+    <p class='account-message'>
+      Do you already have an account?
+      <a href='/auth/login'>Log In</a>
+    </p>
+  </form>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Log In</a>
-  </p>
-</form>
-
-</br>
-<div><a href='/'>Back</a></p></div>
+  <a href='/'>Back</a>
+</div>
