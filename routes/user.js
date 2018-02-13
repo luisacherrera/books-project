@@ -9,6 +9,7 @@ router.get('/:id', (req, res, next) => {
   User.findById(userId)
     .then((result) => {
       let data = {
+        name: result.name,
         username: result.username
       };
       res.render('./user/user-detail', data);

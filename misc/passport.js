@@ -50,7 +50,7 @@ function config () {
 
       const newUser = new User();
       newUser.facebookId = profile.id;
-      newUser.facebookName = profile.displayName;
+      newUser.name = profile.displayName;
       newUser.save((err) => {
         if (err) {
           return done(err);
