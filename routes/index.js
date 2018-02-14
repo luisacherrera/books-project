@@ -11,8 +11,8 @@ router.get('/', (req, res, next) => {
 
 // handle the post for search
 router.post('/search', (req, res, next) => {
-  var bodyTitle = req.body.title;
-  Book.find({title: { '$regex': bodyTitle, '$options': 'i' }})
+  const bodyTitle = req.body.title;
+  Book.find({archived: false, title: { '$regex': bodyTitle, '$options': 'i' }})
     .then(booksData => {
       if (booksData.length > 0) {
         res.render('books/books-list', {booksData});

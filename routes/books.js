@@ -14,10 +14,41 @@ function checkRoles (role) {
   };
 }
 
+router.post('/search', (req, res, next) => {
+  const bodyType = req.body.type;
+  const bodysearch = req.body.search;
+  if (bodyType === 'BOOK') {
+    Book.find({title: { '$regex': bodysearch, '$options': 'i' }})
+      .then(booksData => {
+        if (booksData.length > 0) {
+          res.render('books/books-list', {booksData});
+        } else {
+          res.render('books/book-not-found');
+        }
+      });
+  } else if (bodyType === 'AUTHOR') {
+    Book.find({author: { '$regex': bodysearch, '$options': 'i' }})
+      .then(booksData => {
+        if (booksData.length > 0) {
+          res.render('books/books-list', {booksData});
+        } else {
+          res.render('books/book-not-found');
+        }
+      });
+  } else if (bodyType === 'PUBLISHER') {
+    Book.find({owner: { '$regex': bodysearch, '$options': 'i' }})
+      .then(booksData => {
+        if (booksData.length > 0) {
+          res.render('books/books-list', {booksData});
+        } else {
+          res.render('books/book-not-found');
+        }
+      });
+  }
+});
 // render the list of books page
 router.get('/', (req, res, next) => {
-  // Book.find({'archived': false})
-  Book.find()
+  Book.find({'archived': false})
     .then(booksData => {
       res.render('books/books-list', {booksData});
     })
