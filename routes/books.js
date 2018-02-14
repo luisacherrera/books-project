@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
+const User = require('../models/user.js');
 
 function checkRoles (role) {
   return function (req, res, next) {
@@ -67,11 +68,12 @@ router.get('/create', checkRoles('PUBLISHER'), (req, res, next) => {
 
 // handle the post for create
 router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
+  const userID = req.user.id;
   const infoBook = {
     title: req.body.title,
     author: req.body.author,
     description: req.body.description,
-    owner: req.user.id,
+    owner: userID,
     archived: false,
     review: []
   };
@@ -83,6 +85,15 @@ router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
       res.redirect('/books');
     })
     .catch((err) => {
+      return next(err);
+    });
+
+  const updateUser = newBook.id;
+
+  User.findByIdAndUpdate(userID, { $push: { myBooks: updateUser } })
+    .then((book) => {
+      return res.redirect('/books');
+    }).catch(err => {
       return next(err);
     });
 });
@@ -120,13 +131,13 @@ router.post('/:id', (req, res, next) => {
       if (!req.user || req.user.id !== ownerId) {
         res.redirect('/books');
       }
-      const updateInfo = {
+      const updateBook = {
         title: req.body.title,
         author: req.body.author,
         description: req.body.description
       };
 
-      Book.findByIdAndUpdate(bookId, updateInfo)
+      Book.findByIdAndUpdate(bookId, updateBook)
         .then((book) => {
           return res.redirect('/books');
         }).catch(err => {
