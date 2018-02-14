@@ -16,8 +16,7 @@ function checkRoles (role) {
 
 // render the list of books page
 router.get('/', (req, res, next) => {
-  // Book.find({'archived': false})
-  Book.find()
+  Book.find({'archived': false})
     .then(booksData => {
       res.render('books/books-list', {booksData});
     })
