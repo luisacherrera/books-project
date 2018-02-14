@@ -4,5 +4,11 @@
         <h3> Welcome <%= name %></h3>
     </div>
 
-    <a href='/'>Back</a>
+    <button class='submit' onclick="goBack()">Go Back</button>
 </div>
+
+<script>
+  function goBack () {
+    window.history.back();
+  }
+</script>

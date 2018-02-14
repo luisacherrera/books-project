@@ -25,7 +25,7 @@
       </div>
       <% } else { %>
       <div id='userprofile'>
-        <a href='/user/<%= user.id %>'><%= user.name %></a>
+        <a id='logged-user' href='/user/<%= user.id %>'><%= user.name %></a>
       </div> 
       <div id='logout'>
         <form action='/auth/logout' method='post'>

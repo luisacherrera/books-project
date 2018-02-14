@@ -31,6 +31,10 @@ button {
 
 /* HEADER FOOTER */
 
+#logo {
+  padding-left: 15px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -41,7 +45,7 @@ header {
 }
 
 #site-name {
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 800;
 }
 
@@ -51,15 +55,11 @@ header {
   border-color: white;
   border-radius: 5px;
   border-width: 1px;
+  font-size: 14px;
 }
 
 header a, p {
   font-size: 12px;
-}
-
-header .container {
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 header #logs-container {
@@ -209,4 +209,12 @@ h4 {
 
 .submit {
   font-size: 15px;
+}
+
+#logged-user {
+  font-size: 14px;
+}
+
+#userprofile {
+  margin-top: 3px;
 }
