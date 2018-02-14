@@ -1,11 +1,15 @@
 <div class='main-container'>
   <h2>What to read next?</h2>
-  <div class="topnav">
-      <form action='/search' method="POST">
-          <input type="text" name = 'title' placeholder="Search for your favorite book...">
+  
+      <form action='/books/search' method="POST">
+          <input type="text" name = 'search' placeholder="Search for your favorite book...">
+          <label for='type'>Search for: </label>
+          <input id='search-book' type='radio' name='type' value='BOOK'>Book
+          <input id='search-author' type='radio' name='type' value='AUTHOR'>User
+          <input id='search-owner' type='radio' name='type' value='PUBLISHER'>Publisher
           <button class='submit'>Search</button>
-      </form>
-  </div>
+    </form>
+ 
   <% if (user && user.role === 'PUBLISHER') { %>
     <p><a href='/books/create'>Add a new book</a></p>
   <%}%>
@@ -18,5 +22,10 @@
   <% if (typeof message != 'undefined') { %>
     <div class='error-message'><%= message %></div>
   <% } %>
-  <p><a href='/'>Back</a></p>
+  <button onclick="goBack()">Go Back</button>
+  <script>
+  function goBack () {
+    window.history.back();
+  }</script>
+  
 </div>
