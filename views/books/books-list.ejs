@@ -2,11 +2,15 @@
   <h2>What to read next?</h2>
   
       <form action='/books/search' method="POST">
-          <input type="text" name = 'search' placeholder="Search for your favorite book...">
-          <label for='type'>Search for: </label>
-          <input id='search-book' type='radio' name='type' value='BOOK'>Book
-          <input id='search-author' type='radio' name='type' value='AUTHOR'>Author
-          <input id='search-owner' type='radio' name='type' value='PUBLISHER'>Publisher
+          <div class='field'>
+            <input type="text" name = 'search' placeholder="Your search...">
+          </div>
+          <div class='field'>
+            <label for='type'>Filter by: </label>
+            <input id='search-book' type='radio' name='type' value='BOOK'>Book
+            <input id='search-author' type='radio' name='type' value='AUTHOR'>Author
+            <input id='search-owner' type='radio' name='type' value='PUBLISHER'>Publisher
+          </div>
           <button class='submit'>Search</button>
     </form>
  

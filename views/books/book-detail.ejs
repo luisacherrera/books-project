@@ -1,12 +1,12 @@
 <div class='main-container'>
     <div class='container'>
-        <h2 class='title'> Title: <%= title %> </h2>
+        <h2 id='book-title'> Title: <%= title %> </h2>
     </div>
     <div class='container'>
-        <p class='author'> Author: <%= author %></p>
+        <p id='book-author'> Author: <%= author %></p>
     </div>
     <div class='container'>
-        <p class='description'> Description: <%= description %></p>
+        <p id='book-description'> <%= description %></p>
     </div>
     <% if (user && user === owner) { %>
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
