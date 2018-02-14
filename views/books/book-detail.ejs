@@ -11,7 +11,7 @@
     <div class='container'>
         <p class='reviews'> Reviews: <%= review %></p>
     </div>
-    <% if (user ) { %>
+    <% if (user && user.id === owner ) { %>
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
     <form action='/books/delete/<%= id %>/' method="POST">
         <input type='submit' value='Delete'>
