@@ -147,6 +147,7 @@ router.get('/:id', (req, res, next) => {
           author: result.author,
           description: result.description,
           owner: result.owner,
+          user: req.user,
           review: result.review,
           archived: false
         };

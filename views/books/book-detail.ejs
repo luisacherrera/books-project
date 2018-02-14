@@ -11,7 +11,11 @@
     <div class='container'>
         <p class='reviews'> Reviews: <%= review %></p>
     </div>
+<<<<<<< HEAD
     <% if (user) { %>
+=======
+    <% if (user && user.id === owner ) { %>
+>>>>>>> 2bd9f6bb9695d4ca3f3872e7848d3a01faf8a833
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
     <form action='/books/delete/<%= id %>/' method="POST">
         <input type='submit' value='Delete'>
