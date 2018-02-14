@@ -154,6 +154,7 @@ footer {
 input[type=text], input[type=password], textarea {
   border: 1px solid black;
   border-radius: 1px;
+  font-size: 14px;
 }
 
 textarea {
@@ -186,4 +187,26 @@ textarea {
   max-width: 600px;
   text-align: justify;
   line-height: 20px;
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.goback {
+  font-size: 16px;
+}
+
+.submit {
+  font-size: 15px;
 }
