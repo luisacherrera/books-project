@@ -8,10 +8,20 @@
     <div class='container'>
         <p class='description'> Description: <%= description %></p>
     </div>
-    <% if (user && user === owner) { %>
+    <div class='container'>
+        <p class='reviews'> Reviews: <%= review %></p>
+    </div>
+    <% if (user ) { %>
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
-    <form action='/books/Delete/<%= id %>/' method="POST">
+    <form action='/books/delete/<%= id %>/' method="POST">
         <input type='submit' value='Delete'>
+    </form>
+    <%}%>
+    <% if (user) { %>
+    <form action='/books/review/<%= id %>/' method="POST">
+        <p>Review the book:</p>
+        <input type='text' name='review' placeholder= 'Review As <%= user.name %>'>
+        <input type='submit' value='Submit review'>
     </form>
     <%}%>
     <p><a href='/books'>Go to the complete list</a></p>
