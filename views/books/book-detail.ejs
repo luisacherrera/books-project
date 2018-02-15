@@ -12,21 +12,19 @@
             </div>           
         </div>
         <div class='book-image'>
-<<<<<<< HEAD
             <% if (!picPath && picture !== '') {%> 
-=======
-            <% if (picture) {%> 
->>>>>>> 07b916a7575e91de802fc410b40557e70ed9e97d
             <div class='container'>
                 <img id='book-cover' src='<%= picture %>'>
             </div>
             <%}%>
             <img id='book-cover' src='<%= picPath %>'>
         </div>
+        <% if (user && user.role === 'PUBLISHER' && user.id === owner) { %>
         <form action="/books/upload/<%= id %>" method="post" enctype="multipart/form-data">
             <input type="file"  name="photo">
             <input type="submit" value="Save">
           </form>
+          <%}%>
     </div>
 
     <div class='container'>
