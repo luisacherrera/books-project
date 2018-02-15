@@ -5,7 +5,9 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const ensureLogin = require('connect-ensure-login');
+const multer = require('multer');
 
+const upload = multer({ dest: './public/uploads/' });
 // User model
 const User = require('../models/user');
 
@@ -39,11 +41,12 @@ router.get('/signup', (req, res, next) => {
 });
 
 // handle the signup post
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single('photo'), (req, res, next) => {
   if (req.user) {
     return res.redirect('/');
   }
 
+  const picPath = `/uploads/${req.file.filename}`;
   const name = req.body.name;
   const username = req.body.username;
   const password = req.body.password;
@@ -77,7 +80,8 @@ router.post('/signup', (req, res, next) => {
       name,
       username,
       password: hashPass,
-      role
+      role,
+      picPath
     });
 
     newUser.save((err) => {

@@ -1,7 +1,7 @@
 <div class='main-container'>
   <h2>Sign Up</h2>
 
-  <form action='/auth/signup' method='POST' id='form-container'>
+  <form action='/auth/signup' method='POST' id='form-container' enctype="multipart/form-data">
     <div class='field'>
       <label for='name'>Name: </label>
       <input id='name' type='text' name='name' placeholder='Your Name'>
@@ -19,7 +19,9 @@
       <input id='type-user' type='radio' name='type' value='USER'>User
       <input id='type-publisher' type='radio' name='type' value='PUBLISHER'>Publisher
     </div>
-
+    <div class='field'></div>
+      <input type="file" name="photo">
+    </div>
     <% if (typeof message !== 'undefined') { %>
       <div class='error-message'><%= message %></div>
     <% } %>

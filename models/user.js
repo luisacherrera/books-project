@@ -17,6 +17,7 @@ const userSchema = new Schema({
     type: ObjectId,
     ref: 'Book'
   }],
+  picPath: String,
   facebookId: String
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }

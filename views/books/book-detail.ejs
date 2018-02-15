@@ -23,7 +23,7 @@
     <% if (user && user.id === owner ) { %>
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
     <form action='/books/delete/<%= id %>/' method="POST">
-        <input type='submit' value='Delete'>
+        <button class='delete' type='submit'>Delete</button>
     </form>
     <%}%>
     <% if (user) { %>
@@ -38,8 +38,8 @@
     </form>
     <%}%>
     <% if (user) { %>
-    <form action='/books/fav/<%= id %>/' method="POST">
-        <button class='submit' type='submit'>Add to favorites!</button>
+    <form action='/user/fav/<%= id %>/' method="POST">
+        <button class='fav' type='submit'>Add to favorites!</button>
     </form>
     <%}%>
     <p><a class='goback' href='/books'>Go to the complete list</a></p>

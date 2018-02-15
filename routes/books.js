@@ -73,7 +73,6 @@ router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
     title: req.body.title,
     author: req.body.author,
     description: req.body.description,
-    picture: req.body.picture,
     owner: userID,
     archived: false,
     review: []
@@ -163,7 +162,8 @@ router.get('/:id', (req, res, next) => {
           owner: result.owner,
           user: req.user,
           reviews: result.reviews,
-          archived: false
+          archived: false,
+          picPath: result.picPath
         };
         res.render('books/book-detail', data);
       })
@@ -182,7 +182,8 @@ router.get('/:id', (req, res, next) => {
           picture: result.picture,
           owner: result.owner,
           archived: false,
-          reviews: result.reviews
+          reviews: result.reviews,
+          picPath: result.picPath
         };
         res.render('books/book-detail', data);
       })
@@ -202,7 +203,7 @@ router.post('/delete/:id', (req, res, next) => {
       };
       const ownerId = data.owner;
 
-      if (!req.user || req.user._id !== ownerId) {
+      if (!req.user || req.user.id !== ownerId) {
         res.redirect('/books');
       } else {
         const updateInfo = {
@@ -230,20 +231,6 @@ router.post('/review/:id', (req, res, next) => {
   };
 
   Book.findByIdAndUpdate(bookId, { $push: { reviews: reviewData } })
-    .then((book) => {
-      return res.redirect('/books/' + bookId);
-    }).catch(err => {
-      return next(err);
-    });
-});
-router.post('/fav/:id', (req, res, next) => {
-  const userId = req.user._id;
-  if (!req.user) {
-    res.redirect('/auth/login');
-  }
-  const bookId = req.params.id;
-
-  User.findByIdAndUpdate(userId, { $push: { myBooks: bookId } })
     .then((book) => {
       return res.redirect('/books/' + bookId);
     }).catch(err => {
