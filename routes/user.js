@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
+const multer = require('multer');
 
+const upload = multer({ dest: './public/uploads/' });
 // render the user page
 
 router.get('/:id', (req, res, next) => {
@@ -37,6 +39,23 @@ router.post('/fav/:id', (req, res, next) => {
   User.findByIdAndUpdate(userId, { $push: { myBooks: bookId } })
     .then((book) => {
       return res.redirect('/books/' + bookId);
+    }).catch(err => {
+      return next(err);
+    });
+});
+
+router.post('/upload/:id', upload.single('photo'), (req, res, next) => {
+  const userId = req.user.id;
+  if (!req.user) {
+    res.redirect('/auth/login');
+  }
+  const updatePic = {
+    picPath: `/uploads/${req.file.filename}`
+  };
+
+  User.findByIdAndUpdate(userId, updatePic)
+    .then((user) => {
+      return res.redirect('/user/' + userId);
     }).catch(err => {
       return next(err);
     });
