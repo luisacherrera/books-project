@@ -251,3 +251,8 @@ h4 {
 #userprofile {
   margin-top: 3px;
 }
+
+#book-cover {
+  width: 250px;
+  height: 350px;
+}
