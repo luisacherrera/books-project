@@ -24,7 +24,8 @@ const app = express();
 
 // mongoose setup
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/project-bookstore', {
+mongoose.connect(process.env.MONGODB_URI, {
+// mongoose.connect('mongodb://localhost/project-bookstore', {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE
 });

@@ -9,7 +9,15 @@
         <p id='book-description'> <%= description %></p>
     </div>
     <div class='container'>
-        <p class='reviews'> Reviews: <%= review %></p>
+        <img src='<%= picture %>'>
+    </div>
+    <div class='container'>
+        <h3>Reviews: </h3>
+    <% review.forEach(function (text) { %>
+        <div class='review-container'>
+            <p id='reviews'><%= text %></p>
+        </div>
+    <% }) %>
     </div>
     <% if (user && user.id === owner ) { %>
     <p><a href='/books/<%= id %>/edit'>Edit</a></p>
@@ -19,9 +27,13 @@
     <%}%>
     <% if (user) { %>
     <form action='/books/review/<%= id %>/' method="POST">
-        <p>Review the book:</p>
-        <input type='text' name='review' placeholder= 'Review As <%= user.name %>'>
-        <input type='submit' value='Submit review'>
+        <div class='container'>
+            <p id='add-review'>Add a review:</p>
+        </div>
+        <div class='container'>
+            <textarea name='review' id='review-area' placeholder='Reviewing as <%= user.name %>...'></textarea>
+        </div>
+        <button class='submit' type='submit'>Submit review</button>
     </form>
     <%}%>
     <p><a class='goback' href='/books'>Go to the complete list</a></p>
