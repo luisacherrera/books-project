@@ -3,9 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
-const multer = require('multer');
 
-const upload = multer({ dest: './public/uploads/' });
 // render the user page
 
 router.get('/:id', (req, res, next) => {
@@ -27,21 +25,6 @@ router.get('/:id', (req, res, next) => {
     .catch(err => {
       return next(err);
     });
-});
-router.post('/:id/upload', upload.single('photo'), (req, res, next) => {
-  const pic = new Photo({
-    content: req.body.content,
-    creatorId: req.body.creatorId,
-    picPath: `/uploads/${req.file.filename}`,
-    picName: req.file.picName
-  });
-
-  pic.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/');
-  });
 });
 
 router.post('/fav/:id', (req, res, next) => {
