@@ -146,6 +146,7 @@ router.get('/:id', (req, res, next) => {
           title: result.title,
           author: result.author,
           description: result.description,
+          picture: result.picture,
           owner: result.owner,
           user: req.user,
           review: result.review,
@@ -164,6 +165,7 @@ router.get('/:id', (req, res, next) => {
           title: result.title,
           author: result.author,
           description: result.description,
+          picture: result.picture,
           owner: result.owner,
           archived: false,
           review: result.review
