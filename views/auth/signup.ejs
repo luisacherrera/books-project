@@ -3,23 +3,39 @@
 
   <form action='/auth/signup' method='POST' id='form-container' enctype="multipart/form-data">
     <div class='field'>
-      <label for='name'>Name: </label>
-      <input id='name' type='text' name='name' placeholder='Your Name'>
+      <div class='col-25'>
+        <label for='name'>Name: </label>
+      </div>
+      <div class='col-75'>
+        <input id='name' type='text' name='name' placeholder='Your Name'>
+      </div>
     </div>
     <div class='field'>
-      <label for='username'>Username: </label>
-      <input id='username' type='text' name='username' placeholder='Your UserName'>
+      <div class='col-25'>
+        <label for='username'>Username: </label>
+      </div>
+      <div class='col-75'>
+        <input id='username' type='text' name='username' placeholder='Your UserName'>
+      </div>
     </div>
     <div class='field'>
-      <label for='password'>Password: </label>
-      <input id='password' type='password' name='password' placeholder='Your password'>
+      <div class='col-25'>
+        <label for='password'>Password: </label>
+      </div>
+      <div class='col-75'>
+        <input id='password' type='password' name='password' placeholder='Your password'>
+      </div>
     </div>
     <div class='field'>
-      <label for='type'>Type: </label>
-      <input id='type-user' type='radio' name='type' value='USER'>User
-      <input id='type-publisher' type='radio' name='type' value='PUBLISHER'>Publisher
+      <div class='col-25'>
+        <label for='type'>Type: </label>
+      </div>
+      <div class='col-75'>
+        <input id='type-user' type='radio' name='type' value='USER'>User
+        <input id='type-publisher' type='radio' name='type' value='PUBLISHER'>Publisher
+      </div>
     </div>
-    <div class='field'></div>
+    <div class='field'>
       <input type="file" name="photo">
     </div>
     <% if (typeof message !== 'undefined') { %>
@@ -28,16 +44,18 @@
     <div class='control'>
       <button class='submit'>Create account</button>
     </div>
+  </form>
 
     <p class='account-message'>
       Do you already have an account?
       <a href='/auth/login'>Log In</a>
     </p>
-  </form>
 
   <button class='submit' onclick="goBack()">Go Back</button>
-  <script>
+</div>
+
+<script>
   function goBack () {
     window.history.back();
-  }</script>
-</div>
+  }
+</script>
