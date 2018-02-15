@@ -8,6 +8,10 @@
             <img class='user-photo' src='<%= user.picPath %>' alt=''>
         </div>
     </div>
+    <form action="/user/upload/:id" method="post" enctype="multipart/form-data">
+        <input type="file"  name="photo">
+        <input type="submit" value="Save">
+    </form>
     <% if (user.role === 'PUBLISHER') {%>
         <p>Books added: </p>
     <%} else {%>
