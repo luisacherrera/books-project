@@ -14,14 +14,10 @@
     <div class='container' id='logs-container'>
       <% if (!user) {%> 
       <div id='login'>
-        <p><a href='/auth/login'>Log In</a>
-        </br>
-        <a href='/auth/facebook'>Login with Facebook</a></p>
+        <a href='/auth/login'><button type='submit' id='button-logout'>Log in</button></a>
       </div>
       <div id='signup'>
-        <p>Don't have an account?
-        </br>
-        <a href='/auth/signup'>Sign up here</a></p>
+        <a href='/auth/signup'><button type='submit' id='button-logout'>Sign up</button></a>
       </div>
       <% } else { %>
       <div id='userprofile'>
