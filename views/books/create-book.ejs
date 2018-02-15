@@ -20,23 +20,23 @@
       </div>
       <div class='field'>
         <div class='col-25'>
-          <label for='picture'> Url for your book cover: </label>
+          <label for='picture'> Cover (URL): </label>
         </div>
         <div class='col-75'>
           <input type='text' name='picture' id='author'/>
         </div>
       </div>
       <div class='field'>
-        <div class='col-25'>
-          <label for='description'> Description: </label>
+          <div class='col-25'>
+            <label for='description'>Description: </label>
+          </div>
+          <div class='col-75'>
+            <textarea name='description' id='description' placeholder='Description for your book'></textarea>
+          </div>
         </div>
-        <div class='col-75'>
-          <textarea name='description' id='description'></textarea>
+        <div class='control'>
+          <button class='submit'>Add book</button>
         </div>
-      </div>
-      <div class='control'>
-        <button class='submit' type='submit'>Add book</button>
-      </div>
     </form>
 
     <button class='submit' onclick="goBack()">Go Back</button>
