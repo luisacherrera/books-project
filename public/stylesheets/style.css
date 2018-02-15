@@ -293,7 +293,7 @@ h4 {
   margin-bottom: 15px;
 }
 
-.bookinfo-container {
+.bookinfo-container, .userinfo-container {
   display: flex;
   flex-wrap: wrap;
 }
@@ -302,4 +302,14 @@ h4 {
   margin-top: 40px;
   margin-left: 20px;
   margin-bottom: 20px;
+}
+
+.userphoto-container {
+  margin-top: 20px;
+  margin-left:30px;
+}
+
+.user-photo {
+  width: 200px;
+  height: 200px;
 }
