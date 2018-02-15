@@ -27,9 +27,15 @@
       </div>
     </div>
     <div class='control'>
-      <button>Edit</button>
+      <button class='submit'>Edit</button>
     </div>
   </form>
 
-  <a href='/books'>Back</a>
+  <button class='submit' onclick="goBack()">Go Back</button>
 </div>
+
+<script>
+  function goBack () {
+    window.history.back();
+  }
+</script>

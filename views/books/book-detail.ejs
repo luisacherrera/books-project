@@ -34,7 +34,7 @@
         <a class='edit-book' href='/books/<%= id %>/edit'>Edit</a>
     </div>
     <form action='/books/delete/<%= id %>/' method="POST">
-        <button class='delete' type='submit'>Delete</button>
+        <button class='submit' type='submit'>Delete</button>
     </form>
     <%}%>
     <% if (user && user.role === 'USER') { %>
@@ -48,7 +48,7 @@
         <button class='submit' type='submit'>Submit review</button>
     </form>
     <form action='/user/fav/<%= id %>/' method="POST">
-        <button class='fav' type='submit'>Add to favorites!</button>
+        <button class='submit' type='submit'>Add to favorites!</button>
     </form>
     <%}%>
     <p><a class='goback' href='/books'>Go to the complete list</a></p>
