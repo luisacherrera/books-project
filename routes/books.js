@@ -73,6 +73,7 @@ router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
     title: req.body.title,
     author: req.body.author,
     description: req.body.description,
+    picture: req.body.picture,
     owner: userID,
     archived: false,
     review: []
