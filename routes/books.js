@@ -221,9 +221,12 @@ router.post('/review/:id', (req, res, next) => {
   if (!req.user) {
     res.redirect('/auth/login');
   }
-  const updateInfo = req.body.review;
+  const reviewData = {
+    reviewOwner: req.user.name,
+    reviewContent: req.body.review
+  };
 
-  Book.findByIdAndUpdate(bookId, { $push: { review: updateInfo } })
+  Book.findByIdAndUpdate(bookId, { $push: { review: reviewData } })
     .then((book) => {
       return res.redirect('/books');
     }).catch(err => {
