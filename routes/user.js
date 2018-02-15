@@ -15,7 +15,8 @@ router.get('/:id', (req, res, next) => {
     .then((result) => {
       let data = {
         name: result.name,
-        username: result.username
+        username: result.username,
+        myBooks: result.myBooks
       };
       res.render('./user/user-detail', data);
     })

@@ -12,6 +12,7 @@ const userSchema = new Schema({
     enum: ['USER', 'PUBLISHER'],
     default: 'USER'
   },
+  myBooks: [],
   facebookId: String
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
