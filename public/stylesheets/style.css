@@ -157,6 +157,10 @@ input[type=text], input[type=password], textarea {
   font-size: 14px;
 }
 
+.filter-books {
+  width: 270px;
+}
+
 textarea {
   width: 200px;
   height: 150px;
@@ -186,17 +190,24 @@ textarea {
   flex-grow: initial;
   max-width: 700px;
   text-align: justify;
-  line-height: 20px;
+  line-height: 25px;
   font-size: 16px;
+  padding: 5px;
 }
 
-#reviews {
+.reviews {
   display: flex;
   flex-grow: initial;
   max-width: 700px;
   text-align: justify;
   line-height: 20px;
   font-size: 15px;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
+.reviewers {
+  font-size: 13px;
   padding: 5px 10px;
 }
 
@@ -207,7 +218,8 @@ textarea {
   background-size: 100px;
   border: 1px solid rgb(115,123,145);
   border-radius: 10px;
-  max-width: 700px;
+  min-width: 270px;
+  max-width: 450px;
   min-height: 80px;
   margin-bottom: 15px;
   background-color: rgb(187,189,189);
@@ -221,6 +233,13 @@ textarea {
 #review-area {
   min-width: 270px;
   margin-bottom: 20px;
+}
+
+@media (min-width: 550px) {
+  #review-area {
+    min-width: 450px;
+    margin-bottom: 20px;
+  }
 }
 
 h2 {
@@ -242,6 +261,7 @@ h4 {
 
 .submit {
   font-size: 15px;
+  margin-bottom: 20px;
 }
 
 #logged-user {
@@ -255,4 +275,23 @@ h4 {
 #book-cover {
   width: 250px;
   height: 350px;
+}
+
+.add-book, .edit-book {
+  font-size: 16px;
+}
+
+.edit-container {
+  margin-bottom: 15px;
+}
+
+.bookinfo-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-image {
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }

@@ -3,7 +3,7 @@
   
       <form action='/books/search' method="POST">
           <div class='field'>
-            <input type="text" name = 'search' placeholder="Your search...">
+            <input class= 'filter-books' type="text" name = 'search' placeholder="Your search...">
           </div>
           <div class='field'>
             <label for='type'>Filter by: </label>
@@ -15,7 +15,7 @@
     </form>
  
   <% if (user && user.role === 'PUBLISHER') { %>
-    <p><a href='/books/create'>Add a new book</a></p>
+    <a class='add-book' href='/books/create'>Add a new book</a>
   <%}%>
   <% booksData.forEach(function (book){%>
     <div class='container'>
