@@ -3,7 +3,15 @@
     <div class='container'>
         <h3> Welcome <%= name %></h3>
     </div>
-
+    <div class='container'>
+        <% myBooks.forEach(function (book) { %>
+          <div class='container'>
+              <p id='reviews'><%= book.title %></p>
+              <p id='reviews'><%= book.author %></p>
+              <p id='reviews'><%= book.picture %></p>
+          </div>
+      <% }) %>
+    </div>
     <button class='submit' onclick="goBack()">Go Back</button>
 </div>
 

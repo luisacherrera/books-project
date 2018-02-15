@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo')(session);
 
 const configurePassport = require('./misc/passport');
 const authRoutes = require('./routes/authRoutes');
@@ -44,9 +45,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(session({
-  secret: 'our-passport-local-strategy-app',
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  secret: 'some-string',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
 }));
 
 configurePassport();

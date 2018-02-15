@@ -12,6 +12,7 @@ router.get('/:id', (req, res, next) => {
     res.redirect('/');
   }
   User.findById(userId)
+    .populate('myBooks')
     .then((result) => {
       let data = {
         name: result.name,

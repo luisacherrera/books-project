@@ -13,9 +13,10 @@
     </div>
     <div class='container'>
         <h3>Reviews: </h3>
-    <% review.forEach(function (text) { %>
+    <% reviews.forEach(function (review) { %>
         <div class='review-container'>
-            <p id='reviews'><%= text %></p>
+            <p id='reviews'><%= review.owner.name %></p>
+            <p id='reviews'><%= review.content %></p>
         </div>
     <% }) %>
     </div>
@@ -34,6 +35,11 @@
             <textarea name='review' id='review-area' placeholder='Reviewing as <%= user.name %>...'></textarea>
         </div>
         <button class='submit' type='submit'>Submit review</button>
+    </form>
+    <%}%>
+    <% if (user) { %>
+    <form action='/books/fav/<%= id %>/' method="POST">
+        <button class='submit' type='submit'>Add to favorites!</button>
     </form>
     <%}%>
     <p><a class='goback' href='/books'>Go to the complete list</a></p>
