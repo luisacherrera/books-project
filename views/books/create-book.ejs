@@ -1,7 +1,7 @@
 <div class='main-container'>
   <h2>Add a new book</h2>
 
-  <form action='/books/create' method='POST' >
+  <form action='/books/create' method='POST'  enctype="multipart/form-data">
       <div class='field'>
         <div class='col-25'>
           <label for='title'> Title: </label>
@@ -18,10 +18,6 @@
           <input type='text' name='author' id='author'/>
         </div>
       </div>
-      <div class='field'>
-        <div class='col-25'>
-          <label for='picture'> Url for your book cover: </label>
-        </div>
         <div class='col-75'>
           <input type='text' name='picture' id='author'/>
         </div>
@@ -32,6 +28,9 @@
         </div>
         <div class='col-75'>
           <textarea name='description' id='description'></textarea>
+        </div>
+        <div class='field'>
+          <input type="file" name="photo">
         </div>
       </div>
       <div class='control'>

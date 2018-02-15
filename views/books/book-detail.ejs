@@ -12,12 +12,17 @@
             </div>           
         </div>
         <div class='book-image'>
-            <% if (picture !== '') {%> 
+            <% if (!picPath && picture !== '') {%> 
             <div class='container'>
                 <img id='book-cover' src='<%= picture %>'>
             </div>
             <%}%>
+            <img id='book-cover' src='<%= picPath %>'>
         </div>
+        <form action="/books/upload/<%= id %>" method="post" enctype="multipart/form-data">
+            <input type="file"  name="photo">
+            <input type="submit" value="Save">
+          </form>
     </div>
 
     <div class='container'>
