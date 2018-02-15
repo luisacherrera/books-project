@@ -38,7 +38,8 @@ function config () {
     clientID: '188206165264319',
     clientSecret: '7b2cac88a042cfe6e5d3d48a833f01ed',
     callbackURL: 'http://localhost:3000/auth/facebook/callback',
-    profileURL: 'https://graph.facebook.com/v2.5/me?fields=name,email'
+    profileURL: 'https://graph.facebook.com/v2.5/me?fields=name,email',
+    profileFields: ['id', 'displayName', 'name', 'gender', 'picture.type(large)']
   }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ 'facebookId': profile.id }, (err, user) => {
       if (err) {
@@ -51,6 +52,8 @@ function config () {
       const newUser = new User();
       newUser.facebookId = profile.id;
       newUser.name = profile.displayName;
+      newUser.picPath = profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg';
+
       newUser.save((err) => {
         if (err) {
           return done(err);
