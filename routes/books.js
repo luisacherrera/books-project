@@ -152,6 +152,7 @@ router.get('/:id', (req, res, next) => {
   const bookId = req.params.id;
   if (req.user) {
     Book.findById(bookId)
+      .populate('reviews.owner')
       .then((result) => {
         let data = {
           id: result.id,
@@ -161,7 +162,7 @@ router.get('/:id', (req, res, next) => {
           picture: result.picture,
           owner: result.owner,
           user: req.user,
-          review: result.review,
+          reviews: result.reviews,
           archived: false
         };
         res.render('books/book-detail', data);
@@ -171,6 +172,7 @@ router.get('/:id', (req, res, next) => {
       });
   } else {
     Book.findById(bookId)
+      .populate('reviews.owner')
       .then((result) => {
         let data = {
           id: result.id,
@@ -180,7 +182,7 @@ router.get('/:id', (req, res, next) => {
           picture: result.picture,
           owner: result.owner,
           archived: false,
-          review: result.review
+          reviews: result.reviews
         };
         res.render('books/book-detail', data);
       })
@@ -200,7 +202,7 @@ router.post('/delete/:id', (req, res, next) => {
       };
       const ownerId = data.owner;
 
-      if (req._passport.session.user !== ownerId || !req.user) {
+      if (!req.user || req.user._id !== ownerId) {
         res.redirect('/books');
       } else {
         const updateInfo = {
@@ -223,13 +225,27 @@ router.post('/review/:id', (req, res, next) => {
     res.redirect('/auth/login');
   }
   const reviewData = {
-    reviewOwner: req.user.name,
-    reviewContent: req.body.review
+    owner: req.user._id,
+    content: req.body.review
   };
 
-  Book.findByIdAndUpdate(bookId, { $push: { review: reviewData } })
+  Book.findByIdAndUpdate(bookId, { $push: { reviews: reviewData } })
     .then((book) => {
-      return res.redirect('/books');
+      return res.redirect('/books/' + bookId);
+    }).catch(err => {
+      return next(err);
+    });
+});
+router.post('/fav/:id', (req, res, next) => {
+  const userId = req.user._id;
+  if (!req.user) {
+    res.redirect('/auth/login');
+  }
+  const bookId = req.params.id;
+
+  User.findByIdAndUpdate(userId, { $push: { myBooks: bookId } })
+    .then((book) => {
+      return res.redirect('/books/' + bookId);
     }).catch(err => {
       return next(err);
     });

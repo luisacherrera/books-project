@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const userSchema = new Schema({
   username: String,
@@ -12,7 +13,10 @@ const userSchema = new Schema({
     enum: ['USER', 'PUBLISHER'],
     default: 'USER'
   },
-  myBooks: [],
+  myBooks: [{
+    type: ObjectId,
+    ref: 'Book'
+  }],
   facebookId: String
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
