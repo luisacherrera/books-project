@@ -3,15 +3,22 @@
     <div class='container'>
         <h3> Welcome <%= name %></h3>
     </div>
+    <% if (user.role === 'PUBLISHER') {%>
+        <p>Books added: </p>
+    <%} else {%>
+        <p>My favorite books: </p>
+    <%}%>
     <div class='container'>
         <% myBooks.forEach(function (book) { %>
           <div class='container'>
               <p id='reviews'><%= book.title %></p>
               <p id='reviews'><%= book.author %></p>
-              <p id='reviews'><%= book.picture %></p>
           </div>
       <% }) %>
     </div>
+    <% if (user.role === 'PUBLISHER') {%>
+        <p><a class='add-book' href='/books/create'>Add a new book</a></p>
+    <%}%>
     <button class='submit' onclick="goBack()">Go Back</button>
 </div>
 
