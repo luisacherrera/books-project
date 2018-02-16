@@ -107,6 +107,18 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
   failureRedirect: '/auth/login'
 }));
 
+// google log in
+
+router.get('/google', passport.authenticate('google', {
+  scope: ['https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/plus.profile.emails.read']
+}));
+
+router.get('/google/callback', passport.authenticate('google', {
+  failureRedirect: '/auth/login',
+  successRedirect: '/books'
+}));
+
 // handle the logout post
 router.post('/logout', (req, res) => {
   req.logout();
