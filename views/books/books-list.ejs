@@ -13,15 +13,28 @@
           </div>
           <button class='submit'>Search</button>
     </form>
- 
-  <% if (user && user.role === 'PUBLISHER') { %>
-    <a class='add-book' href='/books/create'>Add a new book</a>
-  <%}%>
+
   <% booksData.forEach(function (book){%>
-    <div class='container'>
-      <h3><a href='/books/<%= book._id %>'><%= book.title %></a></h3>
-      <h4><%= book.author %></h4>
+    <a class='listedbooks-link' href='/books/<%= book._id %>'>
+    <div class='listedbooks-container'>
+      <div class='listedbooks-image'>
+        <% if (book.picture) {%>
+        <div class='thumbnail-container'>
+            <img class='thumbnail' src='<%= book.picture %>'>
+        </div>
+        <%}%>
+        <% if (book.picPath) {%>
+        <div class='thumbnail-container'>
+            <img class='thumbnail' src='<%= book.picPath %>'>
+        </div>
+        <%}%>   
+      </div>
+      <div class='listedbooks-info'>
+        <h3><%= book.title %></h3>
+        <h4><%= book.author %></h4>
+      </div>
     </div>
+    </a>
   <%})%>
   <% if (typeof message != 'undefined') { %>
     <div class='error-message'><%= message %></div>

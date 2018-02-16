@@ -13,22 +13,38 @@
         </div>
     </div>
     <% if (user.role === 'PUBLISHER') {%>
-        <p>Books added: </p>
+        <h3>Books added: </h3>
     <%} else {%>
-        <p>My favorite books: </p>
+        <h3>My favorite books: </h3>
     <%}%>
     <div class='container'>
         <% myBooks.forEach(function (book) { %>
-          <div class='container'>
-              <p id='reviews'><%= book.title %></p>
-              <p id='reviews'><%= book.author %></p>
-          </div>
-      <% }) %>
+        <a class='listedbooks-link' href='/books/<%= book.id %>'>
+        <div class='listedbooks-container'>
+            <div class='listedbooks-image'>
+                <% if (book.picture) {%>
+                <div class='thumbnail-container'>
+                    <img class='thumbnail' src='<%= book.picture %>'>
+                </div>
+                <%}%>
+                <% if (book.picPath) {%>
+                <div class='thumbnail-container'>
+                    <img class='thumbnail' src='<%= book.picPath %>'>
+                </div>
+                <%}%>    
+            </div>
+            <div class='listedbooks-info'>
+                <h4><%= book.title %></h4>
+                <p><%= book.author %></p>
+            </div>
+        </div>
+        </a>
+        <% }) %>
     </div>
     <% if (user.role === 'PUBLISHER') {%>
-        <p><a class='add-book' href='/books/create'>Add a new book</a></p>
+        <a class='add-book' href='/books/create'><button class='submit'>Add a new book</button></a>
     <%}%>
-    <button class='submit' onclick="goBack()">Go Back</button>
+    <p><button class='submit' onclick="goBack()">Go Back</button></p>
 </div>
 
 <script>
