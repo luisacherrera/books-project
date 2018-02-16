@@ -38,7 +38,7 @@ function config () {
   passport.use(new GoogleStrategy({
     clientID: '136311495182-4iqah027dej72ar1vt85u3df1nnqreo2.apps.googleusercontent.com',
     clientSecret: 'TRvteoAXExzeD1ZlPGLIvLho',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+    callbackURL: 'http://bookworld.herokuapp.com/auth/google/callback'
   }, (accessToken, refreshToken, profile, done) => {
     User.findOne({ googleID: profile.id }, (err, user) => {
       if (err) {
@@ -66,7 +66,7 @@ function config () {
   passport.use(new FbStrategy({
     clientID: '188206165264319',
     clientSecret: '7b2cac88a042cfe6e5d3d48a833f01ed',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    callbackURL: 'http://bookworld.herokuapp.com/auth/facebook/callback',
     profileURL: 'https://graph.facebook.com/v2.5/me?fields=name,email',
     profileFields: ['id', 'displayName', 'name', 'gender', 'picture.type(large)']
   }, (accessToken, refreshToken, profile, done) => {
