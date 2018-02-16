@@ -143,7 +143,7 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
       if (!req.file) {
         updatePic = result.picPath;
       } else {
-        updatePic = req.file.filename;
+        updatePic = `/uploads/${req.file.filename}`;
       }
       let updateDescription = '';
       if (req.body.description === '') {
