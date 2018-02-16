@@ -4,6 +4,9 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
 const User = require('../models/user.js');
+const multer = require('multer');
+
+const upload = multer({ dest: './public/uploads/' });
 
 function checkRoles (role) {
   return function (req, res, next) {
@@ -14,6 +17,22 @@ function checkRoles (role) {
     }
   };
 }
+router.post('/upload/:id', upload.single('photo'), (req, res, next) => {
+  const bookId = req.params.id;
+  if (!req.user) {
+    return res.redirect('/auth/login');
+  }
+  const updatePic = {
+    picPath: `/uploads/${req.file.filename}`
+  };
+
+  Book.findByIdAndUpdate(bookId, updatePic)
+    .then((book) => {
+      return res.redirect('/books/' + bookId);
+    }).catch(err => {
+      return next(err);
+    });
+});
 
 router.post('/search', (req, res, next) => {
   const bodyType = req.body.type;
@@ -67,7 +86,7 @@ router.get('/create', checkRoles('PUBLISHER'), (req, res, next) => {
 });
 
 // handle the post for create
-router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
+router.post('/create', checkRoles('PUBLISHER'), upload.single('photo'), (req, res, next) => {
   const userID = req.user.id;
   const infoBook = {
     title: req.body.title,
@@ -75,8 +94,10 @@ router.post('/create', checkRoles('PUBLISHER'), (req, res, next) => {
     description: req.body.description,
     owner: userID,
     archived: false,
-    review: []
+    review: [],
+    picPath: `/uploads/${req.file.filename}`
   };
+  console.log('neahhh');
 
   const newBook = new Book(infoBook);
 
@@ -158,12 +179,13 @@ router.get('/:id', (req, res, next) => {
           title: result.title,
           author: result.author,
           description: result.description,
-          picture: result.picture,
+          picPath: result.picPath,
           owner: result.owner,
           user: req.user,
           reviews: result.reviews,
           archived: false,
-          picPath: result.picPath
+          picture: result.picture
+
         };
         res.render('books/book-detail', data);
       })
@@ -179,11 +201,11 @@ router.get('/:id', (req, res, next) => {
           title: result.title,
           author: result.author,
           description: result.description,
-          picture: result.picture,
+          picPath: result.picPath,
           owner: result.owner,
           archived: false,
           reviews: result.reviews,
-          picPath: result.picPath
+          picture: result.picture
         };
         res.render('books/book-detail', data);
       })

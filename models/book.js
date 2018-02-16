@@ -10,6 +10,7 @@ const BookSchema = new Schema({
   description: String,
   owner: String,
   archived: false,
+  picture: String,
   reviews: [{
     owner: {
       type: ObjectId,
@@ -17,7 +18,7 @@ const BookSchema = new Schema({
     },
     content: String
   }],
-  picture: String
+  picPath: String
 });
 
 const Book = mongoose.model('Book', BookSchema);
