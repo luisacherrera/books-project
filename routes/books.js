@@ -138,11 +138,26 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
       if (!req.user || req.user.id !== ownerId) {
         res.redirect('/books');
       }
+
+      let updatePic = '';
+      if (!req.file) {
+        updatePic = result.picPath;
+      } else {
+        updatePic = req.file.filename;
+      }
+      let updateDescription = '';
+      if (req.body.description === '') {
+        updateDescription = result.description;
+      } else {
+        updateDescription = req.body.description;
+      }
+
       const updateBook = {
         title: req.body.title,
         author: req.body.author,
-        description: req.body.description,
-        picPath: `/uploads/${req.file.filename}`
+        description: updateDescription,
+        picPath: updatePic
+        // picPath: `/uploads/${req.file.filename}`
       };
 
       Book.findByIdAndUpdate(bookId, updateBook)
