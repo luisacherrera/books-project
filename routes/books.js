@@ -17,22 +17,6 @@ function checkRoles (role) {
     }
   };
 }
-router.post('/upload/:id', upload.single('photo'), (req, res, next) => {
-  const bookId = req.params.id;
-  if (!req.user) {
-    return res.redirect('/auth/login');
-  }
-  const updatePic = {
-    picPath: `/uploads/${req.file.filename}`
-  };
-
-  Book.findByIdAndUpdate(bookId, updatePic)
-    .then((book) => {
-      return res.redirect('/books/' + bookId);
-    }).catch(err => {
-      return next(err);
-    });
-});
 
 router.post('/search', (req, res, next) => {
   const bodyType = req.body.type;
@@ -131,7 +115,9 @@ router.get('/:id/edit', (req, res, next) => {
         id: result.id,
         title: result.title,
         author: result.author,
-        description: result.description
+        description: result.description,
+        picPath: result.picPath
+
       };
       res.render('books/edit', data);
     }).catch(err => {
@@ -140,7 +126,7 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 // handle the post for edit
-router.post('/:id', (req, res, next) => {
+router.post('/:id', upload.single('photo'), (req, res, next) => {
   const bookId = req.params.id;
   Book.findById(bookId)
     .then((result) => {
@@ -155,7 +141,8 @@ router.post('/:id', (req, res, next) => {
       const updateBook = {
         title: req.body.title,
         author: req.body.author,
-        description: req.body.description
+        description: req.body.description,
+        picPath: `/uploads/${req.file.filename}`
       };
 
       Book.findByIdAndUpdate(bookId, updateBook)
