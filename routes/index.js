@@ -9,6 +9,10 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+router.get('/map', (req, res, next) => {
+  res.render('map');
+});
+
 // handle the post for search
 router.post('/search', (req, res, next) => {
   const bodyTitle = req.body.title;

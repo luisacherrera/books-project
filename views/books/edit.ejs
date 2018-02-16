@@ -1,7 +1,7 @@
 <div class='main-container'>
   <h2>Edit your book information</h2>
 
-  <form action='/books/<%= id %>' method='POST'>
+  <form action='/books/<%= id %>' method='POST' enctype="multipart/form-data">
     <div class='field'>
       <div class='col-25'>
         <label for='title'>Title: </label>
@@ -25,6 +25,14 @@
       <div class='col-75'>
         <textarea name='description' id='description' placeholder='<%= description %>'></textarea>
       </div>
+    </div>
+    <div class='field'>
+        <div class='col-25'>
+          <label for='cover'>Cover Picture: </label>
+        </div>
+        <div class='col-75'>
+            <input type="file"  name="photo">
+        </div>
     </div>
     <div class='control'>
       <button class='submit'>Edit</button>
