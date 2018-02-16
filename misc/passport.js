@@ -5,6 +5,7 @@ const User = require('../models/user');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const FbStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 function config () {
   passport.serializeUser((user, cb) => {
@@ -31,6 +32,34 @@ function config () {
       }
 
       return next(null, user);
+    });
+  }));
+
+  passport.use(new GoogleStrategy({
+    clientID: '136311495182-4iqah027dej72ar1vt85u3df1nnqreo2.apps.googleusercontent.com',
+    clientSecret: 'TRvteoAXExzeD1ZlPGLIvLho',
+    callbackURL: 'http://localhost:3000/auth/google/callback'
+  }, (accessToken, refreshToken, profile, done) => {
+    User.findOne({ googleID: profile.id }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+      if (user) {
+        return done(null, user);
+      }
+
+      const newUser = new User({
+        googleID: profile.id,
+        name: profile.displayName,
+        picPath: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
+      });
+
+      newUser.save((err) => {
+        if (err) {
+          return done(err);
+        }
+        done(null, newUser);
+      });
     });
   }));
 
