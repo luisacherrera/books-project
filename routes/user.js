@@ -38,7 +38,7 @@ router.post('/fav/:id', (req, res, next) => {
 
   User.findByIdAndUpdate(userId, { $push: { myBooks: bookId } })
     .then((book) => {
-      return res.redirect('/books');
+      return res.redirect('/books/' + bookId);
     }).catch(err => {
       return next(err);
     });

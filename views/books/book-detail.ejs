@@ -51,9 +51,11 @@
         </div>
         <button class='submit' type='submit'>Submit review</button>
     </form>
+    <% if (user.myBooks.indexOf(id) === -1 ) { %>
     <form action='/user/fav/<%= id %>/' method="POST">
         <button class='submit' type='submit'>Add to favorites!</button>
     </form>
+    <%}%>
     <%}%>
     <p><a class='goback' href='/books'>Go to the complete list</a></p>
     <p><a class='FindStores' href='/map'>Find close stores</a></p>
