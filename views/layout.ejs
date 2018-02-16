@@ -22,6 +22,9 @@
       <% } else { %>
       <div id='userprofile'>
         <a id='logged-user' href='/user/<%= user.id %>'><%= user.name %></a>
+      </div>
+      <div id='userpic'>
+        <img src='<%= user.picPath %>' class='header-thumbnail'>
       </div> 
       <div id='logout'>
         <form action='/auth/logout' method='post'>
