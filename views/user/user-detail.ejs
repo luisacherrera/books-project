@@ -26,9 +26,9 @@
       <% }) %>
     </div>
     <% if (user.role === 'PUBLISHER') {%>
-        <p><a class='add-book' href='/books/create'>Add a new book</a></p>
+        <a class='add-book' href='/books/create'><button class='submit'>Add a new book</button></a>
     <%}%>
-    <button class='submit' onclick="goBack()">Go Back</button>
+    <p><button class='submit' onclick="goBack()">Go Back</button></p>
 </div>
 
 <script>

@@ -13,10 +13,7 @@
           </div>
           <button class='submit'>Search</button>
     </form>
- 
-  <% if (user && user.role === 'PUBLISHER') { %>
-    <a class='add-book' href='/books/create'>Add a new book</a>
-  <%}%>
+
   <% booksData.forEach(function (book){%>
     <div class='container'>
       <h3><a href='/books/<%= book._id %>'><%= book.title %></a></h3>

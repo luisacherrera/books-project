@@ -11,7 +11,7 @@
                 <p id='book-description'> <%= description %></p>
             </div>           
         </div>
-        <% if (!picPath && picture) {%> 
+        <% if (picture) {%> 
         <div class='book-image'>
             <img id='book-cover' src='<%= picture %>'>
         </div>
@@ -19,14 +19,14 @@
         <% if (picPath) {%> 
         <div class='book-image'>
             <img id='book-cover' src='<%= picPath %>'>
+            <% if (user && user.role === 'PUBLISHER' && user.id === owner) { %>
+            <form action="/books/upload/<%= id %>" method="post" enctype="multipart/form-data">
+                <input type="file"  name="photo">
+                <button class='submit' type='submit'>Save</button>
+            </form>
+            <%}%>
         </div>
         <%}%>
-        <% if (user && user.role === 'PUBLISHER' && user.id === owner) { %>
-        <form action="/books/upload/<%= id %>" method="post" enctype="multipart/form-data">
-            <input type="file"  name="photo">
-            <input type="submit" value="Save">
-          </form>
-          <%}%>
     </div>
 
     <div class='container'>
