@@ -8,6 +8,8 @@ const multer = require('multer');
 
 const upload = multer({ dest: './public/uploads/' });
 
+// check type of user
+
 function checkRoles (role) {
   return function (req, res, next) {
     if (req.isAuthenticated() && req.user.role === role) {
@@ -17,6 +19,8 @@ function checkRoles (role) {
     }
   };
 }
+
+// handle the search
 
 router.post('/search', (req, res, next) => {
   const bodyType = req.body.type;
@@ -243,6 +247,8 @@ router.post('/delete/:id', (req, res, next) => {
       }
     });
 });
+
+// handle the post for review
 
 router.post('/review/:id', (req, res, next) => {
   const bookId = req.params.id;

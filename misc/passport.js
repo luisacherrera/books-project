@@ -19,6 +19,8 @@ function config () {
     });
   });
 
+  // local login
+
   passport.use(new LocalStrategy((username, password, next) => {
     User.findOne({ username }, (err, user) => {
       if (err) {
@@ -34,6 +36,8 @@ function config () {
       return next(null, user);
     });
   }));
+
+  // login with google
 
   passport.use(new GoogleStrategy({
     clientID: '136311495182-4iqah027dej72ar1vt85u3df1nnqreo2.apps.googleusercontent.com',
@@ -62,6 +66,8 @@ function config () {
       });
     });
   }));
+
+  // login with facebook
 
   passport.use(new FbStrategy({
     clientID: '188206165264319',

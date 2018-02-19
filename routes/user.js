@@ -6,6 +6,7 @@ const User = require('../models/user.js');
 const multer = require('multer');
 
 const upload = multer({ dest: './public/uploads/' });
+
 // render the user page
 
 router.get('/:id', (req, res, next) => {
@@ -29,6 +30,8 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
+// handle add to favorites post
+
 router.post('/fav/:id', (req, res, next) => {
   const userId = req.user._id;
   if (!req.user) {
@@ -43,6 +46,8 @@ router.post('/fav/:id', (req, res, next) => {
       return next(err);
     });
 });
+
+// handle upload photo post
 
 router.post('/upload/:id', upload.single('photo'), (req, res, next) => {
   const userId = req.user.id;
